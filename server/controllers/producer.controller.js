@@ -34,6 +34,7 @@ module.exports.postProducer = (req, res) => {
 
 module.exports.getProducers = (req, res) => {
     Producer.find()
+        .populate('blogs')
         .then(data => {
             res.status(200).json({
                 message: "Producers received successfully",
