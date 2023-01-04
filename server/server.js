@@ -12,9 +12,12 @@ const cors = require('cors')
 app.use(cors())
 app.use(express.json(), express.urlencoded({extended: true}))
 
+// entry router before branching into subsequent routes
 app.use('/blogs', blogRoute)
 app.use('/producers', producerRoute)
-// const mainRoute = require('./routes/main.route')
+
+// assigning location for static files
 app.use('/public/', express.static('public'))
-// mainRoute(app)
+
+// listening on port 8000
 app.listen(8000, () => console.log('Server is connected on port 8000'))
