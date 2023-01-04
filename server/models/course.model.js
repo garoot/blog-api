@@ -10,9 +10,10 @@ const CourseSchema = new Schema({
         type: String,
         required: [true, "Describe shortly what your course is about"]
     },
-    writer: {
+    producer: {
         type: Schema.Types.ObjectId,
-        ref: "Writer"
+        ref: "Producer",
+        required: [true, "you must assign a producer for this course"]
     },
     courseLength: Number,
     numLessons: Number,

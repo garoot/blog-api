@@ -14,7 +14,8 @@ const BlogSchema = new Schema({
     profilePic: String,
     producer: {
         type: Schema.Types.ObjectId,
-        ref: "Producer"
+        ref: "Producer",
+        required: [true, "you must assign a creator for this blog"]
     },
     keywords: [{
         type: Schema.Types.ObjectId,

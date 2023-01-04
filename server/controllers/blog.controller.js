@@ -22,7 +22,7 @@ module.exports.postBlog = (req, res) => {
         profilePic: profilePic,
     })
     blog.save(err => {
-        if(err) { res.send(err);}
-        else { res.send('blog added!'); }
+        if(err) { res.send(err)}
+        else { res.send('blog added!')}
     });
 }

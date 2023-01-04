@@ -4,11 +4,13 @@ const {Schema} = mongoose;
 const SavedBlogSchema = new Schema({
     student: {
         type: Schema.Types.ObjectId,
-        ref: "Student"
+        ref: "Student",
+        required: [true, "you must assign a student to this savedBlog"]
     },
     blog: {
         type: Schema.Types.ObjectId,
-        ref: "Blog"
+        ref: "Blog",
+        required: [true, "you must assign a blog to this savedBlog"]
     }
 })
 
