@@ -8,7 +8,10 @@ const ReviewSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "User"
     },
-
+    course: {
+        type: Schema.Types.ObjectId,
+        ref: "Course"
+    }
 }, {timestamps: true, collection: 'reviews'})
 
 

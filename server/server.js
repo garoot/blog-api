@@ -3,11 +3,15 @@ require('./models/producer.model')
 
 
 const express = require('express')
+const bodyParser = require('body-parser')
 const app = express()
 // const mainRoute = require('./routes/main.route')
 const blogRoute = require('./routes/blog.route')
 const producerRoute = require('./routes/producer.route')
+const studentRoute = require('./routes/student.route')
+const courseRoute = require('./routes/course.route')
 const keywordRoute =require('./routes/keyword.route')
+const reviewRoute =require('./routes/review.route')
 const cors = require('cors')
 app.use(cors())
 app.use(express.json(), express.urlencoded({extended: true}))
@@ -15,7 +19,10 @@ app.use(express.json(), express.urlencoded({extended: true}))
 // entry router before branching into subsequent routes
 app.use('/blogs', blogRoute)
 app.use('/producers', producerRoute)
+app.use('/students', studentRoute)
+app.use('/courses', courseRoute)
 app.use('/keywords', keywordRoute)
+app.use('/reviews', reviewRoute)
 
 // assigning location for static files
 app.use('/public/', express.static('public'))
