@@ -28,7 +28,15 @@ const BlogSchema = new Schema({
     readLength: Number,
     likes: Number,
     saves: Number,
-    views: Number
+    views: Number,
+    studentsRead: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Student'
+    }],
+    studentsSaved: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Student'
+    }]
 
 }, {timestamps: true, collection: 'blogs'}
 )

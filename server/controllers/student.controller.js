@@ -4,6 +4,7 @@ const Student = require('../models/student.model')
 module.exports.getStudents = (req, res) => {
     Student.find()
         .populate('reviews')
+        // .populate('savedBlogs')
         .then(data => {
             res.status(200).json({
                 message: "Students received successfully",
@@ -31,3 +32,4 @@ module.exports.postStudent = (req, res) => {
         else {res.send('producer created')}
     })
 }
+

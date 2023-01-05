@@ -10,6 +10,13 @@ router
 
     .post(upload.single('profilePic'),
         blogController.postBlog)
+router
+    .route('/saveBlog')
+    .put(blogController.saveBlog)
+
+router
+    .route('/readBlog')
+    .put(blogController.readBlog)
 module.exports = router;
 // module.exports = (app) => {
 //     app.get('/blogs', blogController.getBlogs);

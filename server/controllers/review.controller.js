@@ -33,7 +33,7 @@ module.exports.postReview = (req, res) => {
         course: req.body.course
     })
     // adding review to course
-    const course = Course.findById(
+    Course.findById(
         {_id: req.body.course},
         (err, course) => {
             if(err) {
