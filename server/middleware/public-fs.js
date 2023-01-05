@@ -1,11 +1,11 @@
-const DIR = './public'
+const publicDIR = './public'
 const {v4: uuidv4} = require('uuid')
 let multer = require('multer');
 
 
-const storage = multer.diskStorage({
+const publicStorage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, DIR)
+        cb(null, publicDIR)
     },
     filename: (req, file, cb) => {
         const filename = file.originalname.toLowerCase().split(' ').join('-')
@@ -14,7 +14,7 @@ const storage = multer.diskStorage({
 })
 
 var upload = multer({
-    storage: storage,
+    storage: publicStorage,
     limits: { fileSize:  401943040},
     fileFilter: (req, file, cb) => {
         if(file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg" || file.mimetype == "video/mp4" ) {
@@ -28,4 +28,4 @@ var upload = multer({
     }
 })
 
-module.exports = {storage, upload}
+module.exports = {upload}

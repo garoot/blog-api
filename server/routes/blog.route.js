@@ -1,6 +1,5 @@
 const blogController = require('../controllers/blog.controller');
-const Blog = require('../models/blog.model');
-const {storage, upload} = require('../middleware/filesystem')
+const {upload} = require('../middleware/blogpic-fs')
 const express = require('express')
 // making sure we capture req.everything
 const router = express.Router({mergeParams: true})
@@ -11,7 +10,7 @@ router
 
     .post(upload.single('profilePic'),
         blogController.postBlog)
-module.exports = router
+module.exports = router;
 // module.exports = (app) => {
 //     app.get('/blogs', blogController.getBlogs);
 
@@ -33,4 +32,3 @@ module.exports = router
 // 
 // }
 
-module.exports = router;

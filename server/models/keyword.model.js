@@ -1,10 +1,12 @@
 const mongoose = require('mongoose');
 const {Schema} = mongoose;
+var uniqueValidator = require('mongoose-unique-validator');
+
 
 const KeywordSchema = new Schema({
     name: {
         type: String,
-        unique: true,
+        unique: true, 
     },
     icon: String,
     blogs: [{
@@ -18,6 +20,6 @@ const KeywordSchema = new Schema({
 
 }, {timestamps: true, collection: 'keywords'}
 )
-
+KeywordSchema.plugin(uniqueValidator)
 const Keyword = mongoose.model('Keyword', KeywordSchema);
 module.exports = Keyword;
