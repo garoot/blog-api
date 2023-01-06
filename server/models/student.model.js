@@ -48,6 +48,10 @@ const StudentSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Review'
     }],
+    enrollments: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Enrollment'
+    }],
     hash: String,
     salt: String,
 

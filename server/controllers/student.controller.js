@@ -3,7 +3,7 @@ const Student = require('../models/student.model')
 
 module.exports.getStudents = (req, res) => {
     Student.find()
-        .populate('reviews')
+        .populate('enrollments')
         // .populate('savedBlogs')
         .then(data => {
             res.status(200).json({
@@ -29,7 +29,9 @@ module.exports.postStudent = (req, res) => {
     })
     student.save(err =>{
         if(err) { res.send(err)}
-        else {res.send('producer created')}
+        else {res.send('student created')}
     })
 }
+
+
 

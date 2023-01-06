@@ -37,6 +37,10 @@ const CourseSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Target"
     }],
+    enrollments: [{
+        type: Schema.Types.ObjectId,
+        ref: "Enrollment"
+    }],
     courseLanguage: String,
     pricing: Number,
     usedUnits: Number
