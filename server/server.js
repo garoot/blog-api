@@ -13,6 +13,8 @@ const courseRoute = require('./routes/course.route')
 const keywordRoute =require('./routes/keyword.route')
 const reviewRoute =require('./routes/review.route')
 const receiptRoute =require('./routes/receipt.route')
+const enrollmentRoute =require('./routes/enrollment.route')
+
 const cors = require('cors')
 app.use(cors())
 app.use(express.json(), express.urlencoded({extended: true}))
@@ -25,6 +27,7 @@ app.use('/courses', courseRoute)
 app.use('/keywords', keywordRoute)
 app.use('/reviews', reviewRoute)
 app.use('/receipts', receiptRoute)
+app.use('/enrollments', enrollmentRoute)
 
 // assigning location for static files
 app.use('/public/', express.static('public'))

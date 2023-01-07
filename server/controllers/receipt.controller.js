@@ -7,7 +7,7 @@ const Receipt = require('../models/receipt.model')
 // Step 1: student adds course/s to cart  
 // Front-End:
 // 1: a courseUnit is created for each added course to help attach "used: boolean" attribute
-//      with: course, used, price, promoCode, discountAmount, amountPaid, tierClass
+//   used/new courses with: course, used, price, promoCode, discountAmount, amountPaid, tierClass, prevEnrollment
 // 2: promo checking with backend promo system API for each course (for Later)
 // Back-End: none
 
@@ -29,9 +29,10 @@ const {courseUnits, student, cloudReceipt} = require('../test/courseUnit.model')
 // 3: system links each enrollment to the course (enrollment.course = course._id)
 // 4: system links each enrollment to the receipt (enrollment.receipt = receipt._id)
 // 5: system links each enrollment to the student (enrollment.student = student._id)
-// 6: system adds enrollment to receipt.enrollments[] 
-// 7 (expensive): system adds each enrollment to course.enrollments[]
-// 8: system adds each enrollment to student.enrollments[]
+// 6: find prevEnrollment and deactivate
+// 7: system adds enrollment to receipt.enrollments[] 
+// 8 (expensive): system adds each enrollment to course.enrollments[]
+// 9: system adds each enrollment to student.enrollments[]
 module.exports.createNewReceipt = (req, res) => {
     console.log("pre-entry")
     console.log()
@@ -68,7 +69,8 @@ module.exports.createNewReceipt = (req, res) => {
             // 5:
             // should be req.body.student
             // but for testing case...
-            student: student
+            student: student,
+            prevEnrollment: unit.prevEnrollment
         })
         enrollment.save(err => {
             if(err){console.log(err)}
@@ -76,10 +78,29 @@ module.exports.createNewReceipt = (req, res) => {
         })
 
         // 6:
+        // find the prevEnrollment to deactivate
+        
+        Enrollment.findById({_id: enrollment.prevEnrollment}, (err, enrollment) => {
+            if(err){console.log(err)}
+            else{
+                enrollment.active = false
+                enrollment.save(err => {
+                    if(err){console.log(err)}
+                    else{console.log("prevEnrollment deactivated successfully")}
+                })
+            }
+
+
+
+        })
+
+
+        // 7:
         receipt.enrollments.push(enrollment)
         // to be concated with student.enrollment in step 8
         enrollments.push(enrollment)
-        // 7:
+
+        // 8:
         // this part can be expensive. Alternatively... 
         // since we're doing this to be able to list all students
         // enrolled in a course we can do this via Enrollment model 
@@ -99,7 +120,7 @@ module.exports.createNewReceipt = (req, res) => {
         if(err){res.send(err)}
         else{res.send("receipt created in backend successfully")}
     })
-    // 8:
+    // 9:
     // test cases:
     // student has enrollments, wants to add one enrollment
     // student has enrollments, wants to add array of new enrollments

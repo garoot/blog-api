@@ -21,6 +21,12 @@ const EnrollmentSchema = new Schema({
     // Golden, Silver, Basic
     // is used, tierClass is automatically basic
     tierClass: String,
+    // to reference the previous enrollment 
+    prevEnrollment: {
+        type: Schema.Types.ObjectId,
+        ref: "Enrollment"
+    },
+    
     receipt: {
         type: Schema.Types.ObjectId,
         ref: "Receipt"
