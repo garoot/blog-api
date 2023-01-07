@@ -21,3 +21,7 @@ const FieldSchema = new Schema({
         ref: "Producer"
     }]
 }, {timestamps: true, collection: 'fields'})
+
+
+const Field = mongoose.model('Field', FieldSchema)
+module.exports = Field

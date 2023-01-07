@@ -144,4 +144,16 @@ module.exports.createNewReceipt = (req, res) => {
     // console.log(enrollments)
 
 }
+module.exports.getReceipts = (req, res) => {
+    Receipt.find()
+        .then(data => {
+            res.status(200).json({
+                message: "receipts received successfully",
+                receipts: data
+            })
+        })
+        .catch(err => {
+            res.send(err)
+        })
+}
 

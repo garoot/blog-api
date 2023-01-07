@@ -11,4 +11,13 @@ router
     // POST() function for route '/'
     .post(upload.single('icon'),
         keywordController.postKeyword)
+
+router
+    .route('/add-course')
+    .put(keywordController.addCourse)
+
+router
+    .route('/add-blog')
+    .put(keywordController.addBlog)
+
 module.exports = router;

@@ -6,7 +6,7 @@ const router = express.Router({mergeParams: true})
 router
     .route('/')
     // GET() for Review class based on course._id
-    // .get(reviewController.getReviewsForCourse)
+    .get(receiptController.getReceipts)
     // POST() for Review class 
     .post(receiptController.createNewReceipt)
 module.exports = router;
