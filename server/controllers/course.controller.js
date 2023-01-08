@@ -48,7 +48,7 @@ module.exports.addToCategory = (req, res) => {
     )
     Category.findById({_id: req.body.category},
         (err, category) => {
-            if(err){res.json({error:err})}
+            if(err){console.log(err)}
             else if(!category.courses.includes(req.body.course)){
                 category.courses.push(req.body.course)
             }

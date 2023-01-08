@@ -36,7 +36,11 @@ const BlogSchema = new Schema({
     studentsSaved: [{
         type: Schema.Types.ObjectId,
         ref: 'Student'
-    }]
+    }],
+    category: {
+        type: Schema.Types.ObjectId,
+        ref: "Category"
+    },
 
 }, {timestamps: true, collection: 'blogs'}
 )

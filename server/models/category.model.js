@@ -9,6 +9,10 @@ const CategorySchema = new Schema({
     courses: [{
         type: Schema.Types.ObjectId,
         ref: "Course"
+    }],
+    blogs: [{
+        type: Schema.Types.ObjectId,
+        ref: "Blog"
     }]
 }, {timestamps: true, collection: 'categories'})
 

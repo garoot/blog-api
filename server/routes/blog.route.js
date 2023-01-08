@@ -25,6 +25,10 @@ router
 router
     .route('/add-comment')
     .put(blogController.addComment)
+
+router
+    .route('/add-to-category')
+    .put(blogController.addToCategory)
 module.exports = router;
 // module.exports = (app) => {
 //     app.get('/blogs', blogController.getBlogs);

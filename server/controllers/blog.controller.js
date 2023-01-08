@@ -3,16 +3,18 @@ const Producer = require('../models/producer.model')
 const Student = require('../models/student.model')
 const Keyword = require('../models/keyword.model')
 const Comment = require('../models/comment.model')
+const Category = require('../models/category.model')
 
 module.exports.getBlogs = (req,res) => {
     Blog.find()
-        .populate({
-            path: 'comments',
-            populate: {
-                path: 'creator',
-                model: 'Student'
-            }
-        })
+        // .populate({
+        //     path: 'comments',
+        //     populate: {
+        //         path: 'creator',
+        //         model: 'Student'
+        //     }
+        // })
+        .populate('category')
         .then(data => {
             res.status(200).json({
                 message: "Blogs received successfully",
@@ -223,5 +225,37 @@ module.exports.addKeyword = (req, res) => {
                 }
             }
     })
+}
 
+module.exports.addToCategory = (req,res) => {
+    Blog.findById({_id: req.body.blog},
+        (err, blog) => {
+            if(err){res.json({error:err})}
+            else {
+                blog.category = req.body.category
+            }
+            blog.save(err => {
+                if(err){console.log(err)}
+                else{
+                    res.status(201).json({
+                        message: "blog is linked with category successfully",
+                        blog: blog
+                    })
+                }
+            })
+        }
+    )
+    Category.findById({_id: req.body.category},
+        (err, category) => {
+            if(err){res.json({error:err})}
+            else if(!category.blogs.includes(req.body.blog)){
+                category.blogs.push(req.body.blog)
+            }
+            category.save(err=>{
+                if(err){console.log(err)}
+                else{
+                    console.log("blog added in Category successfully")
+                }
+            })
+        })
 }
