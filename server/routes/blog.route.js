@@ -21,6 +21,10 @@ router
 router
     .route('/add-keyword')
     .put(blogController.addKeyword)
+
+router
+    .route('/add-comment')
+    .put(blogController.addComment)
 module.exports = router;
 // module.exports = (app) => {
 //     app.get('/blogs', blogController.getBlogs);

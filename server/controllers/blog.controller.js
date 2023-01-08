@@ -2,9 +2,17 @@ const Blog = require('../models/blog.model')
 const Producer = require('../models/producer.model')
 const Student = require('../models/student.model')
 const Keyword = require('../models/keyword.model')
+const Comment = require('../models/comment.model')
+
 module.exports.getBlogs = (req,res) => {
     Blog.find()
-        .populate('producer')
+        .populate({
+            path: 'comments',
+            populate: {
+                path: 'creator',
+                model: 'Student'
+            }
+        })
         .then(data => {
             res.status(200).json({
                 message: "Blogs received successfully",
@@ -146,6 +154,35 @@ module.exports.readBlog = (req, res) => {
             }
         console.log(student)
     })
+}
+
+module.exports.addComment = (req, res) => {
+    const comment = new Comment({
+        creator: req.body.creator,
+        blog: req.body.blog,
+        text: req.body.comment
+    })
+    comment.save(err=>{
+        if(err){res.json({error:err})}
+        else{
+            res.status(202).json({
+                message:"comment created successfully!"
+            })
+        }
+    })
+    // linking comment with blog
+    Blog.findById({_id: req.body.blog}, 
+        (err, blog) => {
+            if(err){console.log(err)}
+            else{
+                blog.comments.push(comment)
+            }
+            blog.save(err=>{
+                if(err){console.log(err)}
+                else{console.log("comment saved in blog successfully")}
+            })
+        }
+    )
 }
 
 module.exports.addKeyword = (req, res) => {
