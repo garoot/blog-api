@@ -10,4 +10,8 @@ router
 
     .post(upload.single('profilePic'),
         studentController.postStudent)
+
+router  
+    .route('/add-to-wishlist')
+    .put(studentController.addToWishlist)
 module.exports = router;

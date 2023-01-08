@@ -41,6 +41,10 @@ const CourseSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Enrollment"
     }],
+    wishlistedBy: [{
+        type: Schema.Types.ObjectId,
+        ref: "Student"
+    }],
     courseLanguage: String,
     pricing: Number,
     usedUnits: Number

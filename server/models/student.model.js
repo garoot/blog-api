@@ -52,6 +52,10 @@ const StudentSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Enrollment'
     }],
+    wishlist: [{
+        type: Schema.Types.ObjectId,
+        ref: "Course"
+    }],
     hash: String,
     salt: String,
 

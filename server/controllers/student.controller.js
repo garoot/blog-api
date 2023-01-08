@@ -1,5 +1,5 @@
 const Student = require('../models/student.model')
-
+const Course = require('../models/course.model')
 
 module.exports.getStudents = (req, res) => {
     Student.find()
@@ -33,5 +33,44 @@ module.exports.postStudent = (req, res) => {
     })
 }
 
+module.exports.addToWishlist = (req, res) => {
+    Student.findById({_id: req.body.student}, 
+        (err, student) => {
+            if(err){res.json({error:err})}
+            else if(! student.wishlist.includes(req.body.course)){
+                student.wishlist.push(req.body.course)
+                student.save(err=>{
+                    if(err){res.json({error:err})}
+                    else{
+                        res.status(201).json({
+                            message: "Course added to wishlist!"
+                        })
+                    }
+                })
+            } else {
+                res.json({
+                    message: "course already in wishlist!"
+                })
+            }
+        }
+    )
+    Course.findById({_id:req.body.course}, 
+        (err, course) => {
+            if(err){res.json({error:err})}
+            // if student didn't already favoured the course...
+            else if(! course.wishlistedBy.includes(req.body.student)){
+                course.wishlistedBy.push(req.body.student)
+                course.save(err => {
+                    if(err){res.json({error:err})}
+                    else{res.status(201).json({
+                        message: "student added successfully"
+                    })}
+                })
+            } else {
+                console.log("student has already added the course to wishlist")
+            }
+        }   
+    )
+}
 
 

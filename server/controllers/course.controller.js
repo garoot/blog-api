@@ -26,3 +26,26 @@ module.exports.postCourse = (req, res) => {
         }
     })
 }
+
+module.exports.addStudentToWishlist = (req, res) => {
+    Course.findById({_id:req.body.course}, 
+        (err, course) => {
+            if(err){res.json({error:err})}
+            // if student didn't already favoured the course...
+            else if(! course.wishlistedBy.includes(req.body.student)){
+                course.wishlistedBy.push(req.body.student)
+                course.save(err => {
+                    if(err){res.json({error:err})}
+                    else{res.status(201).json({
+                        message: "student added successfully"
+                    })}
+                })
+            } else {
+                res.status(200).json({
+                    message: "student has already added the course to wishlist"
+                })
+            }
+
+        }   
+    )
+}
