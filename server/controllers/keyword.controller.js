@@ -46,9 +46,9 @@ module.exports.addCourse = (req, res) => {
 
 module.exports.getKeywords = (req, res) => {
     Keyword.find()
-        .populate('blogs')
-        .populate('courses')
-        .populate('fields')
+        // .populate('blogs')
+        // .populate('courses')
+        // .populate('fields')
         .then(data => {
             res.status(200).json({
                 message: "Keywords received successfully",

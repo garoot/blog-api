@@ -16,6 +16,10 @@ const KeywordSchema = new Schema({
     courses: [{
         type: Schema.Types.ObjectId,
         ref: "Course"
+    }],
+    fields: [{
+        type: Schema.Types.ObjectId,
+        ref: "Field"
     }]
 
 }, {timestamps: true, collection: 'keywords'}

@@ -17,6 +17,10 @@ router
 router
     .route('/readBlog')
     .put(blogController.readBlog)
+
+router
+    .route('/add-keyword')
+    .put(blogController.addKeyword)
 module.exports = router;
 // module.exports = (app) => {
 //     app.get('/blogs', blogController.getBlogs);

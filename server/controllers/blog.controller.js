@@ -1,7 +1,7 @@
 const Blog = require('../models/blog.model')
 const Producer = require('../models/producer.model')
 const Student = require('../models/student.model')
-
+const Keyword = require('../models/keyword.model')
 module.exports.getBlogs = (req,res) => {
     Blog.find()
         .populate('producer')
@@ -146,4 +146,45 @@ module.exports.readBlog = (req, res) => {
             }
         console.log(student)
     })
+}
+
+module.exports.addKeyword = (req, res) => {
+    Blog.findById({_id: req.body.blog}, 
+        (err, blog) => {
+            if(err){res.json({error:err})}
+            else {
+                if (Array.isArray(req.body.keywords)){
+                    req.body.keywords.map(keyword =>{
+                        if(! blog.keywords.includes(keyword)){
+                            blog.keywords.push(keyword)
+                            // find keyword and add blog to it
+                            Keyword.findById({_id: keyword}, 
+                                (err, keyword) => {
+                                    if(err){console.log(err)}
+                                    else{
+                                        keyword.blogs.push(blog)
+                                    }
+                                    keyword.save(err=>{
+                                        if(err){console.log(err)}
+                                        else{console.log("blog added to keyword")}
+                                    })
+                            })
+                        } else {
+                            res.send({
+                                message: "keyword already added to blog"
+                            })
+                        }
+                    })
+                    blog.save(err => {
+                        if(err){console.log(err)}
+                        else {
+                            console.log( "keywords added to blog successfully")
+                        }
+                    })
+                } else {
+                    res.json({message: "must pass array keywords[] in PUT request"})
+                }
+            }
+    })
+
 }
