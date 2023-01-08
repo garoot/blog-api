@@ -9,4 +9,9 @@ router
     .get(courseController.getCourses)
 
     .post(courseController.postCourse)
-module.exports = router;
+
+router
+    .route('/add-to-category')
+    .put(courseController.addToCategory)
+
+    module.exports = router;

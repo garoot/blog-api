@@ -1,3 +1,4 @@
+const Category = require('../models/category.model')
 const Course = require('../models/course.model')
 
 module.exports.getCourses = (req, res) => {
@@ -25,6 +26,39 @@ module.exports.postCourse = (req, res) => {
             res.send("course created")
         }
     })
+}
+
+module.exports.addToCategory = (req, res) => {
+    Course.findById({_id: req.body.course},
+        (err, course) => {
+            if(err){res.json({error:err})}
+            else {
+                course.category = req.body.category
+            }
+            course.save(err => {
+                if(err){console.log(err)}
+                else{
+                    res.status(201).json({
+                        message: "course is linked with category successfully",
+                        course: course
+                    })
+                }
+            })
+        }
+    )
+    Category.findById({_id: req.body.category},
+        (err, category) => {
+            if(err){res.json({error:err})}
+            else if(!category.courses.includes(req.body.course)){
+                category.courses.push(req.body.course)
+            }
+            category.save(err=>{
+                if(err){console.log(err)}
+                else{
+                    console.log("course added in Category successfully")
+                }
+            })
+        })
 }
 
 // has been added to student.controller.js instead

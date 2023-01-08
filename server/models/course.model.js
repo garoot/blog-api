@@ -25,10 +25,10 @@ const CourseSchema = new Schema({
         ref: "Review"
     }],
     requirements: Array,
-    categories: [{
+    category: {
         type: Schema.Types.ObjectId,
         ref: "Category"
-    }],
+    },
     keywords: [{
         type: Schema.Types.ObjectId,
         ref: "Keyword"
