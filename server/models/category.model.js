@@ -6,6 +6,7 @@ const CategorySchema = new Schema({
         type: String,
         unique: [true, "this category already exists!"]
     },
+    iconPic: String,
     courses: [{
         type: Schema.Types.ObjectId,
         ref: "Course"

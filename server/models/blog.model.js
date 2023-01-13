@@ -11,7 +11,7 @@ const BlogSchema = new Schema({
         required: [true, "must enter a headline for your blog"]
     },
     content: String,
-    profilePic: String,
+    thumbnail: String,
     producer: {
         type: Schema.Types.ObjectId,
         ref: "Producer",

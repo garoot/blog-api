@@ -19,7 +19,8 @@ const FieldSchema = new Schema({
     producers: [{
         type: Schema.Types.ObjectId,
         ref: "Producer"
-    }]
+    }],
+    iconPic: String,
 }, {timestamps: true, collection: 'fields'})
 
 

@@ -15,6 +15,7 @@ const CourseSchema = new Schema({
         ref: "Producer",
         required: [true, "you must assign a producer for this course"]
     },
+    thumbnail: String,
     courseLength: Number,
     numLessons: Number,
     numQuizzes: Number,

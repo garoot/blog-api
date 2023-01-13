@@ -8,7 +8,7 @@ const KeywordSchema = new Schema({
         type: String,
         unique: true, 
     },
-    icon: String,
+    iconPic: String,
     blogs: [{
         type: Schema.Types.ObjectId,
         ref: "Blog"
