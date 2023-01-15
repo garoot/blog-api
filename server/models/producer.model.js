@@ -30,6 +30,7 @@ const ProducerSchema = new Schema({
         match: [/^[a-zA-Z0-9]+$/, 'username is invalid'],
         index: true,
     },
+    password: String,
     email: {
         type: String,
         lowercase: true,
@@ -50,6 +51,10 @@ const ProducerSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Course'
     }],
+    role: {
+        type: Schema.Types.ObjectId,
+        ref: 'Role'
+    }
 
 }, {timestamps:true, collection:'producers'});
 

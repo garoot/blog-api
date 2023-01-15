@@ -1,6 +1,24 @@
 const Student = require('../models/student.model')
 const Course = require('../models/course.model')
 
+// TESTING FUNCTIONS
+
+exports.allAccess = (req, res) => {
+    res.status(200).send("Public Content.")
+}
+exports.userBoard = (req, res) => {
+    res.stauts(200).send("User Content.")
+}
+exports.adminBoard = (req, res) => {
+    res.status(200).send("Admin Content.")
+}
+exports.moderatorBoard = (req, res) => {
+    res.status(200).send("Moderator Content.")
+}
+
+// 
+
+
 module.exports.getStudents = (req, res) => {
     Student.find()
         .populate('enrollments')

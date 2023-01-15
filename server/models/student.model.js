@@ -24,6 +24,7 @@ const StudentSchema = new Schema({
         match: [/^[a-zA-Z0-9]+$/, 'username is invalid'],
         index: true,
     },
+    password: String,
     email: {
         type: String,
         lowercase: true,
@@ -58,6 +59,10 @@ const StudentSchema = new Schema({
     }],
     hash: String,
     salt: String,
+    roles: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Role'
+    }],
 
 }, {timestamps:true, collection:'students'});
 

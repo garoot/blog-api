@@ -3,8 +3,24 @@ require('./models/producer.model')
 
 
 const express = require('express')
+const cors = require('cors')
 const bodyParser = require('body-parser')
+
 const app = express()
+var corsOption = {
+    origin: "http://localhost:8081"
+};
+
+app.use(cors())
+// parse requests of content type: 
+// application/json and application/x-www-form-urlencoded
+app.use(express.json(), express.urlencoded({extended: true}))
+
+// assigning location for static files
+app.use('/public/', express.static('public'))
+
+
+
 // const mainRoute = require('./routes/main.route')
 const blogRoute = require('./routes/blog.route')
 const producerRoute = require('./routes/producer.route')
@@ -16,10 +32,10 @@ const fieldRoute =require('./routes/field.route')
 const reviewRoute =require('./routes/review.route')
 const receiptRoute =require('./routes/receipt.route')
 const enrollmentRoute =require('./routes/enrollment.route')
+const authRoute = require('./routes/auth.route')
 
-const cors = require('cors')
-app.use(cors())
-app.use(express.json(), express.urlencoded({extended: true}))
+require('./routes/auth.route')(app);
+
 
 // entry router before branching into subsequent routes
 app.use('/blogs', blogRoute)
@@ -32,9 +48,11 @@ app.use('/fields', fieldRoute)
 app.use('/reviews', reviewRoute)
 app.use('/receipts', receiptRoute)
 app.use('/enrollments', enrollmentRoute)
+// app.use('/auth', authRoute)
+app.use('/test', studentRoute)
 
-// assigning location for static files
-app.use('/public/', express.static('public'))
+
 
 // listening on port 8000
 app.listen(8000, () => console.log('Server is connected on port 8000'))
+
