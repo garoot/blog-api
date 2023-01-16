@@ -9,7 +9,7 @@ const profilePicStorage = multer.diskStorage({
     },
     filename: (req, file, cb) => {
         const filename = file.originalname.toLowerCase().split(' ').join('-')
-        cb(null, uuidv4() + '_' + filename)
+        req.body.profilePic = cb(null, uuidv4() + '_' + filename)
     }
 })
 

@@ -7,7 +7,7 @@ module.exports.postProducer = (req, res) => {
     const headline = req.body.headline;
     const bio = req.body.bio;
     const birthDate = req.body.birthDate;
-    const profilePic = req.body.profilePic;
+    const profilePic = req.file.filename;
     const country = req.body.country;
     const gender = req.body.gender;
     const username = req.body.username;

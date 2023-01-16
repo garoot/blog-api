@@ -60,7 +60,7 @@ module.exports.getKeywords = (req, res) => {
 module.exports.postKeyword = (req, res) => {
     const keyword = new Keyword({
         name: req.body.name,
-        icon: req.body.icon,
+        icon: req.file.filename,
     })
     keyword.save(err => {
         if(err) {

@@ -36,7 +36,7 @@ module.exports.postBlog = (req, res) => {
     const title = req.body.title
     const headline = req.body.headline
     const content = req.body.content
-    const profilePic = req.body.profilePic
+    const blogPic = req.file.filename
     // only needs to take produce._id 
     // shouldn't be a string when entered in front-end
     const producer = req.body.producer

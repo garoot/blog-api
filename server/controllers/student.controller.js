@@ -1,5 +1,6 @@
 const Student = require('../models/student.model')
 const Course = require('../models/course.model')
+var bcrypt = require("bcryptjs");
 
 // TESTING FUNCTIONS
 
@@ -51,13 +52,13 @@ module.exports.postStudent = (req, res) => {
         lastName: req.body.lastName,
         bio: req.body.bio,
         birthDate: req.body.birthDate,
-        profilePic: req.body.profilePic,
+        profilePic: req.file.filename,
         country: req.body.country,
         gender: req.body.gender,
         username: req.body.username,
         email: req.body.email,
         phoneNumber: req.body.phoneNumber,
-        password: req.body.password
+        password: bcrypt.hashSync(req.body.password, 8),
     })
     student.save(err =>{
         if(err) { res.send(err)}

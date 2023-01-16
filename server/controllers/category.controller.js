@@ -15,9 +15,10 @@ module.exports.getCategories = (req, res) => {
 
 module.exports.postCategory = (req, res) => {
     const title = req.body.title;
-
+    const iconPic = req.file.filename
     const category = new Category({
         title: title,
+        iconPic: iconPic
     })
 
     category.save(err=>{

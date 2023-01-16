@@ -73,7 +73,7 @@ module.exports.getFields = (req, res) => {
 module.exports.postField = (req, res) => {
     const field = new Field({
         name : req.body.name,
-        iconPic : req.body.iconPic
+        iconPic : req.file.filename
     })
 
     field.save(err => {

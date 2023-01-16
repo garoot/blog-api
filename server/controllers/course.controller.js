@@ -16,7 +16,8 @@ module.exports.postCourse = (req, res) => {
     const course = new Course({
         title: req.body.title,
         description: req.body.description,
-        producer: req.body.producer
+        producer: req.body.producer,
+        thumbnail: req.file.filename
     })
     course.save(err => {
         if(err){

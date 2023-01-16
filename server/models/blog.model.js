@@ -41,6 +41,7 @@ const BlogSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Category"
     },
+    blogPic: String
 
 }, {timestamps: true, collection: 'blogs'}
 )
