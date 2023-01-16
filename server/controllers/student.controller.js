@@ -17,7 +17,19 @@ exports.moderatorBoard = (req, res) => {
 }
 
 // 
+module.exports.getMyInfo = (req, res) => {
+    Student.findById({_id: req.userId}, (err, student) => {
+        if(err){res.json({error:err})}
+        else {
+            res.status(200).json({
+                message: `${student.username}'s info has been retrieved successfully!`,
+                student: student,
+                pic: student.profilePic
+            })
+        }
+    })
 
+}
 
 module.exports.getStudents = (req, res) => {
     Student.find()
@@ -32,7 +44,8 @@ module.exports.getStudents = (req, res) => {
 }
 
 module.exports.postStudent = (req, res) => {
-    
+    // console.log(req.body.username)
+    console.log(req.body)
     const student = new Student({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
@@ -44,6 +57,7 @@ module.exports.postStudent = (req, res) => {
         username: req.body.username,
         email: req.body.email,
         phoneNumber: req.body.phoneNumber,
+        password: req.body.password
     })
     student.save(err =>{
         if(err) { res.send(err)}
@@ -52,6 +66,7 @@ module.exports.postStudent = (req, res) => {
 }
 
 module.exports.addToWishlist = (req, res) => {
+    // adjust to: _id: req.userId
     Student.findById({_id: req.body.student}, 
         (err, student) => {
             if(err){res.json({error:err})}

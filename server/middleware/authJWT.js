@@ -7,13 +7,13 @@ const Role = db.role;
 verifyToken = (req, res, next) => {
     let token = req.headers["x-access-token"];
     if(!token){
-        return res.status(403).send({
+        res.status(403).send({
             message: "No token provided!"
         })
     }
     jwt.verify(token, config.secret, (err, decoded) => {
         if(err) {
-            return res.status(401).send({
+            res.status(401).send({
                 message: "Unauthorized!"
             })
         }
@@ -28,26 +28,26 @@ isAdmin = (req, res, next) => {
             res.status(500).send({
                 message: err
             })
-            return
+            // return
         }
         Role.find({_id: {$in: user.roles}}, (err, roles) => {
             if(err) {
                 res.status(500).send({
                     message: err
                 })
-                return;
+                // return;
             }
             for(let i =0; i < roles.length; i++){
                 if(roles[i].name === "admin"){
                     next();
-                    return;
+                    // return;
                 }
             }
 
             res.status(403).send({
                 message: "require admin role!"
             })
-            return;
+            // return;
         })
     })
 }
@@ -58,25 +58,25 @@ isModerator = (req, res, next) => {
             res.status(500).send({
                 message: err
             })
-            return;
+            // return;
         }
         Role.find({_id: {$in: user.roles}}, (err, roles) =>{
             if(err){
                 res.status(500).send({
                     message: err
                 })
-                return
+                // return
             }
             for(let i = 0; i< roles.length; i++){
                 if(roles[i].name === "moderator"){
                     next();
-                    return;
+                    // return;
                 }
             }
             res.status(403).send({
                 message: "required moderator role!"
             })
-            return
+            // return
         })
     })
 }

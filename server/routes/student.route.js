@@ -1,3 +1,4 @@
+
 const studentController = require('../controllers/student.controller');
 const {upload} = require('../middleware/profilepic-fs')
 const express = require('express')
@@ -13,19 +14,24 @@ module.exports = function(app){
         )
         next();
     })
-    app.get("/all", studentController.allAccess)
-    app.get("/user", [authJWT.verifyToken], studentController.userBoard)
-    app.get("/mod", [authJWT.verifyToken, authJWT.isModerator], studentController.moderatorBoard)
-    app.get("/admin", [authJWT.verifyToken, authJWT.isAdmin], studentController.adminBoard)
+    
+    app.get("/test/all", studentController.allAccess)
+    app.get("/students", studentController.getStudents)
+    app.post("/students", upload.single('profilePic') ,studentController.postStudent)
+    app.get("/test/user", [authJWT.verifyToken], studentController.userBoard)
+    // retrieving the logged in student's information
+    app.get("/student", [authJWT.verifyToken], studentController.getMyInfo)
+    app.get("/test/mod", [authJWT.verifyToken, authJWT.isModerator], studentController.moderatorBoard)
+    app.get("/test/admin", [authJWT.verifyToken, authJWT.isAdmin], studentController.adminBoard)
 }
-router
-    .route('/')
-    .get(studentController.getStudents)
+// router
+//     .route('/')
+//     .get(studentController.getStudents)
 
-    .post(upload.single('profilePic'),
-        studentController.postStudent)
+//     .post(upload.single('profilePic'),
+//         studentController.postStudent)
 
-router  
-    .route('/add-to-wishlist')
-    .put(studentController.addToWishlist)
-module.exports = router;
+// router  
+//     .route('/add-to-wishlist')
+//     .put(studentController.addToWishlist)
+// module.exports = router;

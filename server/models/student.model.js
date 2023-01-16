@@ -24,7 +24,10 @@ const StudentSchema = new Schema({
         match: [/^[a-zA-Z0-9]+$/, 'username is invalid'],
         index: true,
     },
-    password: String,
+    password: {
+        type: String,
+        required: [true, "password is required"]
+    },
     email: {
         type: String,
         lowercase: true,

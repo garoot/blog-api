@@ -1,12 +1,19 @@
 const {verifySignUp} = require("../middleware")
-const controller = require("../controllers/auth.controller")
+const authController = require("../controllers/auth.controller")
 
 module.exports = function(app) {
+    // app.use() loads the middleware function before
+    // the route to the /auth/signup or /auth/signin 
     app.use(function(req, res, next){
+        console.log("pre res.header")
         res.header(
             "Access-Control-Allow-Headers",
             "x-access-token, Origin, Content-Type, Accept"
         )
+        console.log("pre next()")
+        // because this is a middleware that sets res.header and does not end the request-response cycle, 
+        // it must call next() so req, res are passed to next middleware function. Otherwise, request will 
+        // be left hanging
         next();
     })
 
@@ -16,7 +23,7 @@ module.exports = function(app) {
             verifySignUp.checkDuplicateUsernameOrEmail,
             verifySignUp.checkRolesExisted
         ],
-        controller.signup
+        authController.signup
     )
-    app.post("/auth/signin", controller.signin)
+    app.post("/auth/signin", authController.signin)
 }

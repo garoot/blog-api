@@ -7,6 +7,7 @@ var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 
 exports.signup = (req, res) => {
+    // new users
     const user = new User({
         username : req.body.username,
         email: req.body.email,
@@ -27,6 +28,8 @@ exports.signup = (req, res) => {
             })
             return;
         }
+        // find roles from db matching req.body.roles
+        // and assigning one-to-many user --> db.roles 
         if(req.body.roles){
             Role.find({name: {$in: req.body.roles}}, (err, roles) => {
                 if(err){
@@ -47,6 +50,7 @@ exports.signup = (req, res) => {
                     })
                 })
             })
+        // otherwise assign basic authority (user role) to new user
         } else {
             Role.findOne({name: "user"}, (err, role) => {
                 if(err){
@@ -71,6 +75,7 @@ exports.signup = (req, res) => {
 }
 
 exports.signin = (req, res) => {
+    console.log("sign in ...")
     User.findOne({
         username: req.body.username
     })
@@ -82,32 +87,37 @@ exports.signin = (req, res) => {
             })
             return;
         }
-
+        // if no user found
         if(!user){
             return res.status(404).send({
                 message: "user not found"
             })
         }
+        // else validate password
         console.log(user)
         console.log(req.body.password)
         var passwordIsValid = bcrypt.compareSync(
             req.body.password,
             user.password
         )
+        // if not valid
         if(!passwordIsValid){
             return res.status(401).send({
                 accessToken: null,
                 message: "Invalid password!"
             })
         }
-        var token = jwt.sign({id:user.id}, config.secret, {
+        // if valid, generate jwt token with attached data
+        var token = jwt.sign({id:user.id, username: user.username}, config.secret, {
             expiresIn: 86400 //24 hours
         })
+        // attach user roles in different format for security
         var authorities = []
         for(let i = 0; i < user.roles.length; i++){
             authorities.push("ROLE_" + user.roles[i].name.toUpperCase())
         }
-        res.status(200).send({
+        // send data and accessToken
+        res.status(200).json({
             id: user._id,
             username: user.username,
             email: user.email,
