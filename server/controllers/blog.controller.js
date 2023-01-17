@@ -44,21 +44,24 @@ module.exports.postBlog = (req, res) => {
         title: title,
         headline: headline,
         content: content,
-        profilePic: profilePic,
+        blogPic: blogPic,
         producer: producer
     })
     blog.save(err => {
         if(err) { res.send(err)}
         else { res.send('blog added!')}
     });
-    console.log(blog.id)
     // making sure new blog is added to the producer's list of created blogs
-    Producer.findOneAndUpdate(
+    console.log("producer",req.body.producer)
+    User.findOneAndUpdate(
         {_id: producer}, 
-        {$push: {blogs: blog}}
+        {$push: {blogs: blog},}
         )
         .then(data => {
             console.log(data);
+        })
+        .catch(err => {
+            res.send({error:err})
         })
 }
 

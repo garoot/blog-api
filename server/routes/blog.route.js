@@ -8,11 +8,11 @@ router
     .route('/')
     .get(blogController.getBlogs)
 
-    .post(upload.single('profilePic'),
+    .post(upload.single('blogPic'),
         blogController.postBlog)
-router
-    .route('/saveBlog')
-    .put(blogController.saveBlog)
+// router
+//     .route('/saveBlog')
+//     .put(blogController.saveBlog)
 
 router
     .route('/readBlog')

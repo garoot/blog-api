@@ -1,5 +1,6 @@
 const User = require('../models/user.model')
 const Course = require('../models/course.model')
+const Blog = require('../models/blog.model')
 var bcrypt = require("bcryptjs");
 
 // TESTING FUNCTIONS
@@ -111,3 +112,53 @@ module.exports.addToWishlist = (req, res) => {
 }
 
 
+module.exports.saveBlog = (req, res) => {
+    // retrieving blog to save "saving/bookmarking user" in it
+    // this can be important to list all users interested in certain topic/keyword
+    Blog.findById(
+        {_id: req.body.blog},
+        (err, blog) => {
+            if(err){ res.json({
+                error:err,
+                })
+            }
+            else if(!blog){
+                console.log("Blog not found")
+                // res.json({message: "Blog not found"})
+            }
+            // if blog not saved by user before...store user in blog.usersSaved
+            else if( !blog.usersSaved.includes(req.body.user)){
+                blog.usersSaved.push(req.body.user)
+                blog.save(err => {
+                    if(err){ res.json({error:err})}
+                    else { console.log("user is saved in blog.usersSaved")}
+                })
+                // console.log(blog)
+            // else.. user read it before..don't store user
+            } else { console.log("user saved blog already!")}
+        console.log(blog)
+    })
+    User.findById(
+        {_id: req.body.user},
+        (err, user) => {
+            if(err) {res.json({error:err})}
+            // if blog doesn't exists in savedBlogs... save
+            else if(! user.savedBlogs.includes(req.body.blog)) {
+                user.savedBlogs.push(req.body.blog)
+                user.save(err => {
+                    if(err) {
+                        res.json({error:err})
+                    }
+                    else {
+                        res.send("blog has been saved!")
+                    }
+                });
+                console.log(user)
+            }
+            // else nothing
+            else{
+                res.send("blog already saved!")
+            }
+        console.log(user)
+    })
+}

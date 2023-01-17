@@ -18,8 +18,12 @@ module.exports = function(app){
     app.get("/test/all", userController.allAccess)
     app.get("/users", userController.getUsers)
     app.post("/users", upload.single('profilePic') ,userController.postUser)
-    app.put("/users/add-to-wishlist", userController.addToWishlist)
+    // UPDATE wishlist
+    app.put("/users/add-to-wishlist",[authJWT.verifyToken], userController.addToWishlist)
+    // UPDATE saved blogs
+    app.put("/user/save-blog", [authJWT.verifyToken, upload.single('blogPic')], userController.saveBlog )
     app.get("/test/user", [authJWT.verifyToken], userController.userBoard)
+    
     // retrieving the logged in user's information
     app.get("/user", [authJWT.verifyToken], userController.getMyInfo)
     app.get("/test/mod", [authJWT.verifyToken, authJWT.isModerator], userController.moderatorBoard)
