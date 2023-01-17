@@ -41,4 +41,7 @@ module.exports.getProducers = (req, res) => {
                 producers: data
             })
         })
+        .catch(err => {
+            if(err){res.json({error:err})}
+        })
 }

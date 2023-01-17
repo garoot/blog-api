@@ -1,7 +1,8 @@
 const config = require("../config/auth.config")
 const db = require("../models")
-const User = db.user
-const Role = db.role
+const {user: User, role: Role, refreshToken: RefreshToken} = db
+// const User = db.user
+// const Role = db.role
 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
@@ -80,12 +81,11 @@ exports.signin = (req, res) => {
         username: req.body.username
     })
     .populate("roles", "-__v")
-    .exec((err, user) => {
+    .exec(async (err, user) => {
         if(err) {
             res.status(500).send({
                 message: err
             })
-            return;
         }
         // if no user found
         if(!user){
@@ -94,8 +94,6 @@ exports.signin = (req, res) => {
             })
         }
         // else validate password
-        console.log(user)
-        console.log(req.body.password)
         var passwordIsValid = bcrypt.compareSync(
             req.body.password,
             user.password
@@ -108,11 +106,14 @@ exports.signin = (req, res) => {
             })
         }
         // if valid, generate jwt token with attached data
-        var token = jwt.sign({id:user.id, username: user.username}, config.secret, {
-            expiresIn: 86400 //24 hours
+        let token = jwt.sign({id:user.id, username: user.username}, config.secret, {
+            expiresIn: config.jwtExpiration //24 hours
         })
+        // and generate refresh token
+        let refreshToken = await RefreshToken.createToken(user);
+        
         // attach user roles in different format for security
-        var authorities = []
+        let authorities = []
         for(let i = 0; i < user.roles.length; i++){
             authorities.push("ROLE_" + user.roles[i].name.toUpperCase())
         }
@@ -122,7 +123,42 @@ exports.signin = (req, res) => {
             username: user.username,
             email: user.email,
             roles: authorities,
-            accessToken: token
+            accessToken: token,
+            refreshToken: refreshToken,
         })
     })
+}
+
+exports.refreshToken = async (req, res) => {
+    const { refreshToken: requestToken} = req.body;
+
+    if(requestToken == null){
+        return res.status(403).json({
+            message: "Refresh Token is required!"
+        })
+    }
+
+    try {
+        let refreshToken = await RefreshToken.findOne({ token: requestToken})
+        if(RefreshToken.verifyExpiration(refreshToken)){
+            RefreshToken.findByIdAndRemove(refreshToken._id, { useFindAndModify: false}).exec();
+
+            res.status(403).json({
+                message: "Refresh token was expired. Please make a new sign-in request",
+            });
+        }
+
+        let newAccessToken = jwt.sign(
+            { id: refreshToken.user._id}, 
+            config.secret,
+            {expiresIn: config.jwtExpiration}
+        );
+
+        return res.status(200).json({
+            accessToken: newAccessToken,
+            refreshToken: refreshToken.token,
+        })
+    } catch (err) {
+        return res.status(500).send({message: err})
+    }
 }

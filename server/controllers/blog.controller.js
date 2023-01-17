@@ -1,6 +1,6 @@
 const Blog = require('../models/blog.model')
-const Producer = require('../models/producer.model')
-const Student = require('../models/student.model')
+// const Producer = require('../models/producer.model')
+const User = require('../models/user.model')
 const Keyword = require('../models/keyword.model')
 const Comment = require('../models/comment.model')
 const Category = require('../models/category.model')
@@ -11,7 +11,7 @@ module.exports.getBlogs = (req,res) => {
         //     path: 'comments',
         //     populate: {
         //         path: 'creator',
-        //         model: 'Student'
+        //         model: 'User'
         //     }
         // })
         .populate('category')
@@ -63,36 +63,36 @@ module.exports.postBlog = (req, res) => {
 }
 
 module.exports.saveBlog = (req, res) => {
-    console.log(req.body.student)
+    console.log(req.body.user)
     console.log(req.body.blog)
-    // retrieving blog to save "saving/bookmarking student" in it
-    // this can be important to list all students interested in certain topic/keyword
+    // retrieving blog to save "saving/bookmarking user" in it
+    // this can be important to list all users interested in certain topic/keyword
     Blog.findById(
         {_id: req.body.blog},
         (err, blog) => {
             if(err){ console.log(err)}
-            // if blog not saved by student before...store student in blog.studentsSaved
-            else if( !blog.studentsSaved.includes(req.body.student)){
-                blog.studentsSaved.push(req.body.student)
+            // if blog not saved by user before...store user in blog.usersSaved
+            else if( !blog.usersSaved.includes(req.body.user)){
+                blog.usersSaved.push(req.body.user)
                 blog.save(err => {
                     if(err){ res.send(err)}
-                    else { console.log("student is saved in blog.studentsSaved")}
+                    else { console.log("user is saved in blog.usersSaved")}
                 })
                 // console.log(blog)
-            // else.. student read it before..don't store student
-            } else { console.log("student saved blog already!")}
+            // else.. user read it before..don't store user
+            } else { console.log("user saved blog already!")}
         console.log(blog)
     })
-    Student.findById(
-        {_id: req.body.student},
-        (err, student) => {
+    User.findById(
+        {_id: req.body.user},
+        (err, user) => {
             if(err) {
                 console.log(err)
             }
             // if blog doesn't exists in savedBlogs... save
-            else if(! student.savedBlogs.includes(req.body.blog)) {
-                student.savedBlogs.push(req.body.blog)
-                student.save(err => {
+            else if(! user.savedBlogs.includes(req.body.blog)) {
+                user.savedBlogs.push(req.body.blog)
+                user.save(err => {
                     if(err) {
                         res.send(err)
                     }
@@ -100,47 +100,47 @@ module.exports.saveBlog = (req, res) => {
                         res.send("blog has been saved!")
                     }
                 });
-                console.log(student)
+                console.log(user)
             }
             // else nothing
             else{
                 res.send("blog already saved!")
             }
-        console.log(student)
+        console.log(user)
     })
 }
 module.exports.readBlog = (req, res) => {
 
-    // retrieving blog to save "reading student" in it
-    // this can be important to list all students interested in certain topic/keyword
+    // retrieving blog to save "reading user" in it
+    // this can be important to list all users interested in certain topic/keyword
     Blog.findById(
         {_id: req.body.blog},
         (err, blog) => {
             if(err){ console.log(err)}
-            // if blog not read by student before...store student in blog.studentsRead
-            else if( !blog.studentsRead.includes(req.body.student)){
-                blog.studentsRead.push(req.body.student)
+            // if blog not read by user before...store user in blog.usersRead
+            else if( !blog.usersRead.includes(req.body.user)){
+                blog.usersRead.push(req.body.user)
                 blog.save(err => {
                     if(err){ res.send(err)}
-                    else { console.log("student is saved in blog.studentsRead")}
+                    else { console.log("user is saved in blog.usersRead")}
                 })
                 console.log(blog)
-            // else.. student read it before..don't store student
-            } else { console.log("student read blog before!")}
+            // else.. user read it before..don't store user
+            } else { console.log("user read blog before!")}
         console.log(blog)
     })
 
-    // retrieving student to save read blog in it
-    Student.findById(
-        {_id: req.body.student},
-        (err, student) => {
+    // retrieving user to save read blog in it
+    User.findById(
+        {_id: req.body.user},
+        (err, user) => {
             if(err) {
                 console.log(err)
             }
             // if blog doesn't exists in savedBlogs... save
-            else if(! student.readBlogs.includes(req.body.blog)) {
-                student.readBlogs.push(req.body.blog)
-                student.save(err => {
+            else if(! user.readBlogs.includes(req.body.blog)) {
+                user.readBlogs.push(req.body.blog)
+                user.save(err => {
                     if(err) {
                         res.send(err)
                     }
@@ -148,13 +148,13 @@ module.exports.readBlog = (req, res) => {
                         res.send("blog has been read!")
                     }
                 });
-                console.log(student)
+                console.log(user)
             }
             // else nothing
             else{
                 res.send("blog already read before!")
             }
-        console.log(student)
+        console.log(user)
     })
 }
 

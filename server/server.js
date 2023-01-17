@@ -1,5 +1,5 @@
 require('./config/mongoose.config')
-require('./models/producer.model')
+// require('./models/producer.model')
 
 
 const express = require('express')
@@ -23,8 +23,8 @@ app.use('/public/', express.static('public'))
 
 // const mainRoute = require('./routes/main.route')
 const blogRoute = require('./routes/blog.route')
-const producerRoute = require('./routes/producer.route')
-const studentRoute = require('./routes/student.route')
+// const producerRoute = require('./routes/producer.route')
+const userRoute = require('./routes/user.route')
 const courseRoute = require('./routes/course.route')
 const keywordRoute =require('./routes/keyword.route')
 const categoryRoute =require('./routes/category.route')
@@ -35,12 +35,12 @@ const enrollmentRoute =require('./routes/enrollment.route')
 const authRoute = require('./routes/auth.route')
 
 require('./routes/auth.route')(app);
-require('./routes/student.route')(app);
+require('./routes/user.route')(app);
 
 // entry router before branching into subsequent routes
 app.use('/blogs', blogRoute)
-app.use('/producers', producerRoute)
-// app.use('/students', studentRoute)
+// app.use('/producers', producerRoute)
+// app.use('/users', userRoute)
 app.use('/courses', courseRoute)
 app.use('/keywords', keywordRoute)
 app.use('/categories', categoryRoute)
@@ -49,7 +49,7 @@ app.use('/reviews', reviewRoute)
 app.use('/receipts', receiptRoute)
 app.use('/enrollments', enrollmentRoute)
 // app.use('/auth', authRoute)
-// app.use('/test', studentRoute)
+// app.use('/test', userRoute)
 
 
 

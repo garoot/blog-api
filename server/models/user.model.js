@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
-const StudentSchema = new Schema({
+const UserSchema = new Schema({
     firstName: String,
     lastName: String,
     country: String,
@@ -66,8 +66,17 @@ const StudentSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Role'
     }],
+    // producer part
+    courses: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Course'
+    }],
+    blogs: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Blog'
+    }],
 
-}, {timestamps:true, collection:'students'});
+}, {timestamps:true, collection:'users'});
 
-const Student = mongoose.model('Student', StudentSchema);
-module.exports = Student;
+const User = mongoose.model('User', UserSchema);
+module.exports = User;

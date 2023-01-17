@@ -1,6 +1,6 @@
 const Review = require('../models/review.model')
 const Course = require('../models/course.model')
-const Student = require('../models/student.model')
+const Student = require('../models/user.model')
 
 // retrieving reviews based on course id
 module.exports.getReviewsForCourse = (req, res) => {

@@ -13,9 +13,9 @@ const ReceiptSchema = new Schema({
         ref: "Enrollment"
     }],
 
-    student: {
+    user: {
         type: Schema.Types.ObjectId,
-        ref: "Student"
+        ref: "User"
     },
 
 }, {timestamps: true, collection: 'receipts'})

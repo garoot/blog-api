@@ -10,6 +10,7 @@ const CourseSchema = new Schema({
         type: String,
         required: [true, "Describe shortly what your course is about"]
     },
+    // ref is used for .populate()
     producer: {
         type: Schema.Types.ObjectId,
         ref: "Producer",

@@ -1,5 +1,5 @@
 const Enrollment = require('../models/enrollment.model')
-const Student = require('../models/student.model')
+const Student = require('../models/user.model')
 const Course = require('../models/course.model')
 const Receipt = require('../models/receipt.model')
 // the process of buying courses (without promotion system)

@@ -1,4 +1,4 @@
-const Student = require('../models/student.model')
+const User = require('../models/user.model')
 const Course = require('../models/course.model')
 var bcrypt = require("bcryptjs");
 
@@ -19,35 +19,38 @@ exports.moderatorBoard = (req, res) => {
 
 // 
 module.exports.getMyInfo = (req, res) => {
-    Student.findById({_id: req.userId}, (err, student) => {
+    User.findById({_id: req.userId}, (err, user) => {
         if(err){res.json({error:err})}
         else {
             res.status(200).json({
-                message: `${student.username}'s info has been retrieved successfully!`,
-                student: student,
-                pic: student.profilePic
+                message: `${user.username}'s info has been retrieved successfully!`,
+                user: user,
+                pic: user.profilePic
             })
         }
     })
 
 }
 
-module.exports.getStudents = (req, res) => {
-    Student.find()
+module.exports.getUsers = (req, res) => {
+    User.find()
         .populate('enrollments')
         // .populate('savedBlogs')
         .then(data => {
             res.status(200).json({
-                message: "Students received successfully",
-                students: data
+                message: "Users received successfully",
+                users: data
             })
+        })
+        .catch(err => {
+            if(err){res.json({error:err})}
         })
 }
 
-module.exports.postStudent = (req, res) => {
+module.exports.postUser = (req, res) => {
     // console.log(req.body.username)
     console.log(req.body)
-    const student = new Student({
+    const user = new User({
         firstName: req.body.firstName,
         lastName: req.body.lastName,
         bio: req.body.bio,
@@ -60,20 +63,20 @@ module.exports.postStudent = (req, res) => {
         phoneNumber: req.body.phoneNumber,
         password: bcrypt.hashSync(req.body.password, 8),
     })
-    student.save(err =>{
+    user.save(err =>{
         if(err) { res.send(err)}
-        else {res.send('student created')}
+        else {res.send('user created')}
     })
 }
 
 module.exports.addToWishlist = (req, res) => {
     // adjust to: _id: req.userId
-    Student.findById({_id: req.body.student}, 
-        (err, student) => {
+    User.findById({_id: req.body.user}, 
+        (err, user) => {
             if(err){res.json({error:err})}
-            else if(! student.wishlist.includes(req.body.course)){
-                student.wishlist.push(req.body.course)
-                student.save(err=>{
+            else if(! user.wishlist.includes(req.body.course)){
+                user.wishlist.push(req.body.course)
+                user.save(err=>{
                     if(err){res.json({error:err})}
                     else{
                         res.status(201).json({
@@ -91,17 +94,17 @@ module.exports.addToWishlist = (req, res) => {
     Course.findById({_id:req.body.course}, 
         (err, course) => {
             if(err){res.json({error:err})}
-            // if student didn't already favoured the course...
-            else if(! course.wishlistedBy.includes(req.body.student)){
-                course.wishlistedBy.push(req.body.student)
+            // if user didn't already favoured the course...
+            else if(! course.wishlistedBy.includes(req.body.user)){
+                course.wishlistedBy.push(req.body.user)
                 course.save(err => {
                     if(err){res.json({error:err})}
                     else{res.status(201).json({
-                        message: "student added successfully"
+                        message: "user added successfully"
                     })}
                 })
             } else {
-                console.log("student has already added the course to wishlist")
+                console.log("user has already added the course to wishlist")
             }
         }   
     )

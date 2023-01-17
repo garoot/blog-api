@@ -2,9 +2,9 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
 const WishListSchema = new Schema({
-    student: {
+    user: {
         type: Schema.Types.ObjectId,
-        ref: "Student",
+        ref: "User",
         required: [true, "you must assign a student to this wishList"]
     },
     course: {
