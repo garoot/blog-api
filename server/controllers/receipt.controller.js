@@ -33,9 +33,9 @@ const {courseUnits, student, cloudReceipt} = require('../test/courseUnit.model')
 // 7: system adds enrollment to receipt.enrollments[] 
 // 8 (expensive): system adds each enrollment to course.enrollments[]
 // 9: system adds each enrollment to student.enrollments[]
-module.exports.createNewReceipt = (req, res) => {
-    console.log("pre-entry")
-    console.log()
+module.exports.createNewReceipt = async (req, res) => {
+    // console.log("pre-entry")
+    // console.log()
     // 1:
     const receipt = new Receipt({
         // should be  req.body.receipt.totalAmount
@@ -50,98 +50,125 @@ module.exports.createNewReceipt = (req, res) => {
     })
     // 2:
     //Assuming req.body.courseUnits[] is an array which each has most enrollment.attributes + course._id
-    const enrollments = []
+    let enrollments = []
     // should be req.body.courseUnits.map(..)
     // but for testing only, we use courseUnits 
-    courseUnits.map(unit =>{
-        const enrollment = new Enrollment({
-            used: unit.used,
-            active: true,
-            price: unit.price,
-            promoCode: unit.promoCode,
-            discountAmount: unit.discountAmount,
-            amountPaid: unit.amountPaid,
-            tierClass: unit.tierClass,
-            // 3:
-            course: unit.course,
-            // 4:
-            receipt: receipt,
-            // 5:
-            // should be req.body.student
-            // but for testing case...
-            student: student,
-            prevEnrollment: unit.prevEnrollment
+    // console.log(req.body.units)
+    var alreadyEnrolled = false
+    req.body.units.map(async unit =>{
+        // if new unit, there's no prevEnrollment
+        let _prevEnrollment = null
+        if(unit.used){
+            _prevEnrollment = unit.prevEnrollment
+        }
+        // 7: side-kick for 7:
+        // checking if student already has active enrollment in any of the courseUnits
+        await Enrollment.find({course: unit.course, student: unit.student, active: true})
+        // 7: is student enrolled in any of the courseUnits        
+        .then(enrollments => {
+            if(enrollments){
+                alreadyEnrolled = true
+                console.log("1",alreadyEnrolled)
+                res.json({message: "userr already enrolled"})
+            }
         })
-        enrollment.save(err => {
-            if(err){console.log(err)}
-            else{console.log('enrollment created')}
-        })
+        .catch(err => {console.log(err)})
 
-        // 6:
-        // find the prevEnrollment to deactivate
         
-        Enrollment.findById({_id: enrollment.prevEnrollment}, (err, enrollment) => {
-            if(err){console.log(err)}
-            else{
-                enrollment.active = false
-                enrollment.save(err => {
-                    if(err){console.log(err)}
-                    else{console.log("prevEnrollment deactivated successfully")}
+
+        // if not enrolled in any of the coursUnits
+        console.log("2",alreadyEnrolled)
+        if(!alreadyEnrolled){
+            const enrollment = new Enrollment({
+                used: unit.used,
+                active: unit.active,
+                price: unit.price,
+                promoCode: unit.promoCode,
+                discountAmount: unit.discountAmount,
+                amountPaid: unit.amountPaid,
+                tierClass: unit.tierClass,
+                // 3:
+                course: unit.course,
+                // 4:
+                receipt: receipt,
+                // 5:
+                // should be req.body.student
+                // but for testing case...
+                student: unit.student,
+                prevEnrollment: _prevEnrollment
+            })
+            enrollment.save(err => {
+                if(err){res.json({error:err})}
+                else{
+                    // console.log(enrollment)
+                    console.log('enrollment created')
+                }
+            })
+            // 6:
+            // find the prevEnrollment to deactivate
+            if(unit.used){
+                Enrollment.findById({_id: enrollment.prevEnrollment}, (err, enrollment) => {
+                    if(err){res.json({
+                        error:err,
+                        message: "prevEnrollment is invalid"
+                    })}
+                    else if(enrollment){
+                        enrollment.active = false
+                        enrollment.save(err => {
+                            if(err){console.log(err)}
+                            else{console.log("prevEnrollment deactivated successfully")}
+                        })
+                    }
                 })
             }
-
-
-
-        })
-
-
-        // 7:
-        receipt.enrollments.push(enrollment)
-        // to be concated with student.enrollment in step 8
-        enrollments.push(enrollment)
-
-        // 8:
-        // this part can be expensive. Alternatively... 
-        // since we're doing this to be able to list all students
-        // enrolled in a course we can do this via Enrollment model 
-        // ex: list all enrollments with courseID = id && active
-        // Course.findById({_id: unit.course},  (err, course) => {
-        //     if(err){ console.log(err)}
-        //     else {
-        //         course.enrollments.push(enrollment)
-        //         course.save(err => {
-        //             if(err){res.send(err)}
-        //             else{res.send("enrollment added to a course")}
-        //         })
-        //     }
-        // })
-    })
-    receipt.save(err =>{
-        if(err){res.send(err)}
-        else{res.send("receipt created in backend successfully")}
-    })
-    // 9:
-    // test cases:
-    // student has enrollments, wants to add one enrollment
-    // student has enrollments, wants to add array of new enrollments
-    // should be _id: req.body.student
-    // but for testing case... _id: student
-    Student.findById({_id: student},  (err, student) => {
-        if(err){ console.log(err)}
-        // LATER: if enrollment with same course._id active and exists, don't add
-        // or BETTER: in front-end don't allow student to add a course he already enrolled in
-        else {
-            student.enrollments.push(...enrollments)
+            // 7:
+            receipt.enrollments.push(enrollment)
+            // to be concated with student.enrollment in step 8
+            enrollments.push(enrollment)
+            // 8:
+            // this part can be expensive. Alternatively... 
+            // since we're doing this to be able to list all students
+            // enrolled in a course we can do this via Enrollment model 
+            // ex: list all enrollments with courseID = id && active
+            // Course.findById({_id: unit.course},  (err, course) => {
+            //     if(err){ console.log(err)}
+            //     else {
+            //         course.enrollments.push(enrollment)
+            //         course.save(err => {
+            //             if(err){res.send(err)}
+            //             else{res.send("enrollment added to a course")}
+            //         })
+            //     }
+            // })
+            receipt.save(err =>{
+                if(err){res.json({error:err})}
+                else{console.log("receipt created in backend successfully")}
+            })
+            // 9:
+            // test cases:
+            // student has enrollments, wants to add one enrollment
+            // student has enrollments, wants to add array of new enrollments
+            // should be _id: req.body.student
+            // but for testing case... _id: student
+            Student.findById({_id: unit.student},  (err, student) => {
+                if(err){ console.log(err)}
+                // LATER: if enrollment with same course._id active and exists, don't add
+                // or BETTER: in front-end don't allow student to add a course he already enrolled in
+                else {
+                    student.enrollments.push(...enrollments)
+                }
+                student.save(err => {
+                    if(err){console.log(err)}
+                    else{console.log("saved student's enrollments")}
+                })
+            })
+            res.json({message: "Enrollment created successfully!"})
+            console.log("4",alreadyEnrolled)
+            
+            
         }
-        student.save(err => {
-            if(err){console.log(err)}
-            else{console.log("saved student's enrollments")}
-        })
-        console.log(student)
+        
     })
-
-    // console.log(receipt)
-    // console.log(enrollments)
 
 }
 module.exports.getReceipts = (req, res) => {

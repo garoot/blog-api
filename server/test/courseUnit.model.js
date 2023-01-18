@@ -1,7 +1,10 @@
 
+const Course = require("../models/course.model")
+const Student = require("../models/user.model")
+
 const courseUnits = [
     {
-    course: "63b6d73c652bc548c154ee8d",
+    course: "63c79ce9098bb03473b230ce",
     used: true,
     price: 69,
     promoCode: "2022",
@@ -14,7 +17,7 @@ const courseUnits = [
     field: ""
     },
     {
-    course: "63b6f44d75d55997343cf2b5",
+    course: "63c79ce9098bb03473b230ce",
     used: false,
     price: 150,
     promoCode: "2022",
@@ -25,7 +28,7 @@ const courseUnits = [
     },
 ]
 
-const student = "63b6f1a83f9f7e14814edfae"
+const student = "63c7e7db07b5b4814080c609"
 
 const cloudReceipt = {
     totalAmount : 59+140,

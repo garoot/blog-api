@@ -33,7 +33,7 @@ const EnrollmentSchema = new Schema({
     },
     student: {
         type: Schema.Types.ObjectId,
-        ref: "Student"
+        ref: "User"
     },
     course: {
         type: Schema.Types.ObjectId,

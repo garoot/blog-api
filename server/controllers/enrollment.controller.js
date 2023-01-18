@@ -2,7 +2,7 @@ const Enrollment = require('../models/enrollment.model')
 
 module.exports.getEnrollments = (req, res) => {
     Enrollment.find()
-        .populate('prevEnrollment')
+        // .populate('student')
         .then(data => {
             res.status(200).json({
                 message: "Enrollments received successfully",
@@ -10,7 +10,7 @@ module.exports.getEnrollments = (req, res) => {
             })
         })
         .catch(err => {
-            res.send.status(401).json({
+            res.json({
                 message: "Error",
                 error: err
             })

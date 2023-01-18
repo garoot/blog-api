@@ -33,9 +33,9 @@ const BlogSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Student'
     }],
-    studentsSaved: [{
+    usersSaved: [{
         type: Schema.Types.ObjectId,
-        ref: 'Student'
+        ref: 'User'
     }],
     category: {
         type: Schema.Types.ObjectId,

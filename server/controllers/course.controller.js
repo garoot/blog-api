@@ -12,12 +12,16 @@ module.exports.getCourses = (req, res) => {
 }
 
 module.exports.postCourse = (req, res) => {
-    console.log(req.formdata)
+    // console.log(req.formdata)
+    let thumbnail = null;
+    if(req.file){
+        thumbnail = req.file.filename
+    }
     const course = new Course({
         title: req.body.title,
         description: req.body.description,
         producer: req.body.producer,
-        thumbnail: req.file.filename
+        thumbnail: thumbnail
     })
     course.save(err => {
         if(err){

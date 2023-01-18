@@ -1,5 +1,6 @@
 
 const userController = require('../controllers/user.controller');
+const receiptController = require('../controllers/receipt.controller')
 const {upload} = require('../middleware/profilepic-fs')
 const express = require('express')
 // making sure we capture req.everything
@@ -22,6 +23,8 @@ module.exports = function(app){
     app.put("/users/add-to-wishlist",[authJWT.verifyToken], userController.addToWishlist)
     // UPDATE saved blogs
     app.put("/user/save-blog", [authJWT.verifyToken, upload.single('blogPic')], userController.saveBlog )
+    // Purchase units/courses 
+    app.post("/user/purchase", [authJWT.verifyToken, receiptController.createNewReceipt])
     app.get("/test/user", [authJWT.verifyToken], userController.userBoard)
     
     // retrieving the logged in user's information

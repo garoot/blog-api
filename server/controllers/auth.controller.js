@@ -140,6 +140,11 @@ exports.refreshToken = async (req, res) => {
 
     try {
         let refreshToken = await RefreshToken.findOne({ token: requestToken})
+        
+        if(!refreshToken){
+            res.status(403).json({message: "Refresh token is not in database!"})
+        }
+        
         if(RefreshToken.verifyExpiration(refreshToken)){
             RefreshToken.findByIdAndRemove(refreshToken._id, { useFindAndModify: false}).exec();
 

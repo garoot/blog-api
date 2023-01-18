@@ -30,12 +30,12 @@ module.exports.getMyInfo = (req, res) => {
             })
         }
     })
-
+    .populate("enrollments")
 }
 
 module.exports.getUsers = (req, res) => {
     User.find()
-        .populate('enrollments')
+        // .populate('enrollments')
         // .populate('savedBlogs')
         .then(data => {
             res.status(200).json({
