@@ -22,7 +22,11 @@ module.exports = function(app){
     // UPDATE wishlist
     app.put("/users/add-to-wishlist",[authJWT.verifyToken], userController.addToWishlist)
     // UPDATE saved blogs
-    app.put("/user/save-blog", [authJWT.verifyToken, upload.single('blogPic')], userController.saveBlog )
+    app.put("/user/save-blog", [authJWT.verifyToken], userController.saveBlog )
+    // DELETE saved blog
+    app.put("/user/unsave-blog", [authJWT.verifyToken], userController.unsaveBlog )
+    // UPDATE read blogs
+    app.put("/user/read-blog", [authJWT.verifyToken,], userController.readBlog )
     // Purchase units/courses 
     app.post("/user/purchase", [authJWT.verifyToken, receiptController.createNewReceipt])
     app.get("/test/user", [authJWT.verifyToken], userController.userBoard)

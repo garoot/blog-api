@@ -29,9 +29,9 @@ const BlogSchema = new Schema({
     likes: Number,
     saves: Number,
     views: Number,
-    studentsRead: [{
+    usersRead: [{
         type: Schema.Types.ObjectId,
-        ref: 'Student'
+        ref: 'User'
     }],
     usersSaved: [{
         type: Schema.Types.ObjectId,

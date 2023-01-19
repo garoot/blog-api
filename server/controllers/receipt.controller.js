@@ -73,7 +73,6 @@ module.exports.createNewReceipt = async (req, res) => {
             }
         })
         .catch(err => {console.log(err)})
-
         
 
         // if not enrolled in any of the coursUnits
