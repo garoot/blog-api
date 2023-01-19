@@ -1,6 +1,7 @@
 
 const userController = require('../controllers/user.controller');
 const receiptController = require('../controllers/receipt.controller')
+const savedBlogController = require('../controllers/savedBlog.controller')
 const {upload} = require('../middleware/profilepic-fs')
 const express = require('express')
 // making sure we capture req.everything
@@ -22,7 +23,7 @@ module.exports = function(app){
     // UPDATE wishlist
     app.put("/users/add-to-wishlist",[authJWT.verifyToken], userController.addToWishlist)
     // UPDATE saved blogs
-    app.put("/user/save-blog", [authJWT.verifyToken], userController.saveBlog )
+    app.put("/user/save-blog", [authJWT.verifyToken], savedBlogController.saveBlog )
     // DELETE saved blog
     app.put("/user/unsave-blog", [authJWT.verifyToken], userController.unsaveBlog )
     // UPDATE read blogs
