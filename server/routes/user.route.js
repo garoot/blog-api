@@ -2,11 +2,13 @@
 const userController = require('../controllers/user.controller');
 const receiptController = require('../controllers/receipt.controller')
 const savedBlogController = require('../controllers/savedBlog.controller')
+const readBlogController = require('../controllers/readBlog.controller');
+
 const {upload} = require('../middleware/profilepic-fs')
 const express = require('express')
 // making sure we capture req.everything
 const router = express.Router({mergeParams: true})
-const {authJWT} = require("../middleware")
+const {authJWT} = require("../middleware");
 
 module.exports = function(app){
     app.use(function(req, res, next){
@@ -22,13 +24,15 @@ module.exports = function(app){
     app.post("/users", upload.single('profilePic') ,userController.postUser)
     // UPDATE wishlist
     app.put("/users/add-to-wishlist",[authJWT.verifyToken], userController.addToWishlist)
-    // UPDATE saved blogs
+    // READ get all blogs (for Role: admin)
+    app.get("/saved-blogs", [authJWT.verifyToken, /* authJWT.isAdmin */], savedBlogController.getAllSavedBlogs)
+    // UPDATE saved blogs (for Role: user)
     app.put("/user/save-blog", [authJWT.verifyToken], savedBlogController.saveBlog )
-    // DELETE saved blog
-    app.put("/user/unsave-blog", [authJWT.verifyToken], userController.unsaveBlog )
-    // UPDATE read blogs
-    app.put("/user/read-blog", [authJWT.verifyToken,], userController.readBlog )
-    // Purchase units/courses 
+    // DELETE saved blog (for Role: user)
+    app.delete("/user/unsave-blog", [authJWT.verifyToken], savedBlogController.unsaveBlog )
+    // UPDATE read blogs (for Role: user)
+    app.post("/user/read-blog", [authJWT.verifyToken,], readBlogController.readBlog )
+    // Purchase units/courses (for Role: user)
     app.post("/user/purchase", [authJWT.verifyToken, receiptController.createNewReceipt])
     app.get("/test/user", [authJWT.verifyToken], userController.userBoard)
     

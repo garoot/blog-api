@@ -54,3 +54,37 @@ module.exports.createSavedBlog = (req, res) => {
         } 
     })
 }
+
+module.exports.unsaveBlog = (req, res) => {
+    savedBlog.find({user: req.userId, blog: req.body.blog}, (err, savedBlog) =>{
+        if(err){res.json({error:err})}
+        else if(savedBlog.length == 0){
+            res.json({message: "savedBlog not found"})
+        } 
+        else if(savedBlog.length > 0){
+            savedBlog[0].remove()
+            res.json({message: "blog has been unsaved!"})
+        }
+    })
+}
+
+// for admin use, by blog ID
+module.exports.getSavedBlogs = (req, res) => {
+    savedBlog.find({blog: req.blog}, (err, savedBlogs) => {
+        if(err){res.json({error:err})}
+        else{
+            res.json({numBlogs: savedBlogs.length})
+        }
+        
+    })
+}
+
+module.exports.getAllSavedBlogs = (req, res) => {
+    savedBlog.find()
+        .then(savedBlogs => {
+            res.json({savedBlogs: savedBlogs})
+        })
+        .catch(err => {
+            res.json({error:err})
+        })
+}
