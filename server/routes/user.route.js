@@ -3,7 +3,7 @@ const userController = require('../controllers/user.controller');
 const receiptController = require('../controllers/receipt.controller')
 const savedBlogController = require('../controllers/savedBlog.controller')
 const readBlogController = require('../controllers/readBlog.controller');
-
+const wishlistController = require('../controllers/wishlist.controller')
 const {upload} = require('../middleware/profilepic-fs')
 const express = require('express')
 // making sure we capture req.everything
@@ -22,10 +22,16 @@ module.exports = function(app){
     app.get("/test/all", userController.allAccess)
     app.get("/users", userController.getUsers)
     app.post("/users", upload.single('profilePic') ,userController.postUser)
-    // UPDATE wishlist
-    app.put("/users/add-to-wishlist",[authJWT.verifyToken], userController.addToWishlist)
-    // READ get all blogs (for Role: admin)
-    app.get("/saved-blogs", [authJWT.verifyToken, /* authJWT.isAdmin */], savedBlogController.getAllSavedBlogs)
+    // READ get wishlists by course id (for Role: admin)
+    app.get("/wishlists", [authJWT.verifyToken,  /* authJWT.isAdmin */], wishlistController.getWishlists)
+    // READ get all wishlists (for Role: admin)
+    app.get("/all-wishlists", [authJWT.verifyToken,  /* authJWT.isAdmin */], wishlistController.getAllWishlists)
+    // UPDATE wishlist (for Role: user)
+    app.post("/user/add-to-wishlist",[authJWT.verifyToken], wishlistController.addToWishlist)
+    // READ get blogs by blog id (for Role: admin)
+    app.get("/all-saved-blogs", [authJWT.verifyToken, /* authJWT.isAdmin */], savedBlogController.getAllSavedBlogs)
+    // READ get all saved blogs (for Role: admin)
+    app.get("/saved-blogs", [authJWT.verifyToken, /* authJWT.isAdmin */], savedBlogController.getSavedBlogs)
     // UPDATE saved blogs (for Role: user)
     app.put("/user/save-blog", [authJWT.verifyToken], savedBlogController.saveBlog )
     // DELETE saved blog (for Role: user)

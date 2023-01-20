@@ -70,13 +70,19 @@ module.exports.unsaveBlog = (req, res) => {
 
 // for admin use, by blog ID
 module.exports.getSavedBlogs = (req, res) => {
-    savedBlog.find({blog: req.blog}, (err, savedBlogs) => {
-        if(err){res.json({error:err})}
-        else{
-            res.json({numBlogs: savedBlogs.length})
-        }
-        
-    })
+    if(!req.body.blog){
+        res.json({message: "must send blog id in request"})
+    }
+    else {
+        savedBlog.find({blog: req.body.blog}, (err, savedBlogs) => {
+            if(err){res.json({error:err})}
+            else{
+                res.json({numBlogs: savedBlogs.length})
+            }
+            
+        })
+    }
+
 }
 
 module.exports.getAllSavedBlogs = (req, res) => {
