@@ -40,3 +40,45 @@ module.exports.createReadBlogs = (req, res) => {
         }
     })
 }
+
+module.exports.myReadBlogs = (req, res) => {
+    ReadBlog.find({user: req.userId}, (err, blogs) => {
+        if(err){res.json({error:err})}
+        else if(blogs.length > 0){
+            res.json({
+                blogs: blogs
+            })
+        }
+        else if(blogs.length == 0){
+            res.json({message: "User didn't read anything"})
+        }
+    })
+}
+
+module.exports.getReadBlogs = (req, res) => {
+    ReadBlog.find({blog: req.body.blog}, (err, blogs) => {
+        if(err){res.json({error:err})}
+        else if(blogs.length > 0){
+            res.json({numberOfReads: blogs.length})
+        }
+        else if(blogs.length == 0){
+            res.json({message: "No reads yet!"})
+        }
+    })
+}
+
+module.exports.getAllReadBlogs = (req, res) => {
+    ReadBlog.find()
+        .populate("blog")
+        .then(readBlogs => {
+            if(readBlogs.length > 0){
+                res.json({allReadBlogs: readBlogs})
+            } 
+            else if(readBlogs.legnth == 0){
+                res.json({message: "No read blogs"})
+            }
+        })
+        .catch(err => {
+            res.json({error:err})
+        })
+}

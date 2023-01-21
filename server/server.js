@@ -47,7 +47,7 @@ app.use('/categories', categoryRoute)
 app.use('/fields', fieldRoute)
 app.use('/reviews', reviewRoute)
 // app.use('/receipts', receiptRoute)
-app.use('/enrollments', enrollmentRoute)
+// app.use('/enrollments', enrollmentRoute)
 // app.use('/auth', authRoute)
 // app.use('/test', userRoute)
 

@@ -4,6 +4,7 @@ const receiptController = require('../controllers/receipt.controller')
 const savedBlogController = require('../controllers/savedBlog.controller')
 const readBlogController = require('../controllers/readBlog.controller');
 const wishlistController = require('../controllers/wishlist.controller')
+const enrollmentController = require('../controllers/enrollment.controller')
 const {upload} = require('../middleware/profilepic-fs')
 const express = require('express')
 // making sure we capture req.everything
@@ -36,10 +37,23 @@ module.exports = function(app){
     app.put("/user/save-blog", [authJWT.verifyToken], savedBlogController.saveBlog )
     // DELETE saved blog (for Role: user)
     app.delete("/user/unsave-blog", [authJWT.verifyToken], savedBlogController.unsaveBlog )
+    // GET get my read blogs (for Role: user)
+    app.get("/user/my-read-blogs", [authJWT.verifyToken,], readBlogController.myReadBlogs )
     // UPDATE read blogs (for Role: user)
     app.post("/user/read-blog", [authJWT.verifyToken,], readBlogController.readBlog )
+    // GET get all read blogs by blog id (for Role: admin)
+    app.get("/read-blogs", [authJWT.verifyToken,  /* authJWT.isAdmin */], readBlogController.getReadBlogs)
+    // GET get all read blogs (for Role: admin)
+    app.get("/all-read-blogs", [authJWT.verifyToken,  /* authJWT.isAdmin */], readBlogController.getAllReadBlogs)
     // Purchase units/courses (for Role: user)
-    app.post("/user/purchase", [authJWT.verifyToken, receiptController.createNewReceipt])
+    app.post("/user/purchase", [authJWT.verifyToken,], receiptController.createNewReceipt)
+    // GET get all enrollments (for Role: admin)
+    app.get("/all-enrollments", [authJWT.verifyToken,  /* authJWT.isAdmin */], enrollmentController.getAllEnrollments)
+    // GET get enrollments by course id (for Role: admin)
+    app.get("/enrollments-by-course", [authJWT.verifyToken,  /* authJWT.isAdmin */], enrollmentController.getEnrollmentsByCourse)
+    // GET get ally my enrollments by user id (for Role: user)
+    app.get("/my-enrollments", [authJWT.verifyToken], enrollmentController.getMyEnrollments)
+
     app.get("/test/user", [authJWT.verifyToken], userController.userBoard)
     
     // retrieving the logged in user's information
