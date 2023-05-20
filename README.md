@@ -11,7 +11,7 @@ then
 npm run serve
 ```
 
-##Dependencies
+## Dependencies
 ```json
   "dependencies": {
     "bcryptjs": "^2.4.3",
