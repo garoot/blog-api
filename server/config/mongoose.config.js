@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Role = require('../models/role.model');
 
 mongoose.set("strictQuery", true)
-mongoose.connect('mongodb://localhost/my_db', {
+mongoose.connect('mongodb://0.0.0.0/my_db', {
     useNewURLParser: true,
     useUnifiedTopology: true
 })

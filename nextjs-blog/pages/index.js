@@ -1,7 +1,18 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
+import Link from 'next/link';
+import {getPostsData} from '../utils/posts'
 
-export default function Home() {
+export async function getStaticProps() {
+  const allPostsData = await getPostsData();
+  return {
+    props: {
+      allPostsData,
+    }
+  }
+}
+
+export default function Home({allPostsData}) {
   return (
     <div className={styles.container}>
       <Head>
@@ -9,6 +20,19 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <section>
+    <body>
+      {allPostsData.blogs[0].title}
+    </body>
+        {/* <ul>
+          {allPostsData.blogs.map( ({title}) => (
+            <li>
+              {title}
+              <br />
+            </li>
+          ))}
+        </ul> */}
+      </section>
       <main>
         <h1 className={styles.title}>
           Hello World!
@@ -16,13 +40,13 @@ export default function Home() {
 
         <div className={styles.grid}>
 
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
+          <Link
+            href="/posts/blog"
             className={styles.card}
           >
-            <h3>Examples &rarr;</h3>
+            <h3>The Blog! &rarr;</h3>
             <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
+          </Link>
 
           <a
             href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
