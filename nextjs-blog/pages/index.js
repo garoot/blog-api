@@ -33,41 +33,39 @@ export default function Home({allPostsData}) {
             </li>
           ))}
         </ul> */}
-      <div className={styles.left}>
 
-      </div>
-      <div className={styles.right}>
-        <Navbar/>
+        <div className={styles.left}>
+          sidebar
+        </div>
+        <div className={styles.right}>
+          <Navbar/>
 
-        <main>
-          <h1 className={styles.title}>
-            Hello World!
-          </h1>
-          <div className={styles.grid}>
+          <main>
+            <h1 className={styles.title}>
+              Hello World!
+            </h1>
+            <div className={styles.grid}>
 
-            <Link
-              href="/posts/blog"
-              className={styles.card}
-            >
-              <h3>The Blog! &rarr;</h3>
-              <p>Discover and deploy boilerplate example Next.js projects.</p>
-            </Link>
+              <Link
+                href="/posts/blog"
+                className={styles.card}
+              >
+                <h3>The Blog! &rarr;</h3>
+                <p>Discover and deploy boilerplate example Next.js projects.</p>
+              </Link>
 
-            <a
-              href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              className={styles.card}
-            >
-              <h3>Deploy &rarr;</h3>
-              <p>
-                Instantly deploy your Next.js site to a public URL with Vercel.
-              </p>
-            </a>
-          </div>
-        </main>
-        <footer></footer>
-      </div>
-
-
+              <a
+                href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
+                className={styles.card}
+              >
+                <h3>Deploy &rarr;</h3>
+                <p>
+                  Instantly deploy your Next.js site to a public URL with Vercel.
+                </p>
+              </a>
+            </div>
+          </main>
+        </div>
 
 
       <style jsx>{`
