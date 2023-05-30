@@ -1,0 +1,102 @@
+.tagsContainer{
+    display: flex;
+    justify-content: space-around;
+}
+.tagsLeft {
+    display: flex;
+    /* width: 50%; */
+    margin-right: 25px;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    height: 50%;
+    
+}
+.tagsAll{
+    background-color: rgb(255, 69, 125);
+}
+.tagsLeft a{
+    /* margin: 0 25px 0 0; */
+    border: 1.3px solid;
+    border-color: rgb(44, 49, 102);
+    border-radius: 25px;
+    height: fit-content;
+    width: fit-content;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    font-size:small;
+    /* background-color: rgba(46, 22, 131, 0.494); */
+    padding: 3px 8px 3px 8px;
+}
+
+.tagsInput{
+    border: 0.5px;
+    background-color: rgba(22, 26, 66, 0.764);
+    border-radius: 7px;
+    padding: 9px;
+    margin: 0px -5px 0px 0;
+    width: 20%;
+    height: 50%;
+}
+
+.tagsClear{
+    background-color: rgb(35, 11, 153);
+}
+
+.tagsRight{
+    align-items: center;
+    width: 50%;
+    display: flex;
+}
+
+.tagsRight a{
+    margin: 0 25px 0 0;
+    text-decoration: none;
+    border: 1.3px solid;
+    border-color: rgb(44, 49, 102);
+    border-radius: 25px;
+    height: fit-content;
+    width: fit-content;
+    text-align: center;
+    color: white;
+    font-size:small;
+    padding: 3px 8px 3px 8px;
+}
+
+.blogsContainer{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+
+.blogCard{
+    width: 50vh;
+    height: 15vh;
+    display: flex;
+    /* justify-content: space-between; */
+    /* border: 2px solid; */
+    border-radius: 10px;
+    /* padding: 3px; */
+    margin: 20px 15px 15px 0;
+    background-color: rgb(22, 26, 66);
+}
+
+.cardThumbnailContainer{
+    width: 50%;
+    max-width: 50%;
+}
+
+.thumbnail{
+    width:100%;
+    height: 100%;
+    object-fit: fill;
+    border-radius: 10px;
+
+}
+
+.blogCardRight{
+    max-width: 50%;
+    margin: -10px 3px 3px 8px;
+}

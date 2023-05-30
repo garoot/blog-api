@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
-import Link from 'next/link';
 import {getPostsData} from '../utils/posts'
-import Navbar from '../components/Navbar'
+import Navbar from '../components/navbar';
+import BlogList from '../components/blogList';
 
 export async function getStaticProps() {
   const allPostsData = await getPostsData();
@@ -40,31 +40,7 @@ export default function Home({allPostsData}) {
         <div className={styles.right}>
           <Navbar/>
 
-          <main>
-            <h1 className={styles.title}>
-              Hello World!
-            </h1>
-            <div className={styles.grid}>
-
-              <Link
-                href="/posts/blog"
-                className={styles.card}
-              >
-                <h3>The Blog! &rarr;</h3>
-                <p>Discover and deploy boilerplate example Next.js projects.</p>
-              </Link>
-
-              <a
-                href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-                className={styles.card}
-              >
-                <h3>Deploy &rarr;</h3>
-                <p>
-                  Instantly deploy your Next.js site to a public URL with Vercel.
-                </p>
-              </a>
-            </div>
-          </main>
+          <BlogList/>
         </div>
 
 

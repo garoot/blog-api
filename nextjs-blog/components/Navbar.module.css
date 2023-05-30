@@ -19,7 +19,11 @@
     margin: 20px;
     color:rgb(255, 69, 125)
 }
-
+.profile:hover{
+    background-color: rgba(22, 26, 66, 0.613);
+    color: white;
+    transition: 0.1s;
+}
 .profile{
     text-decoration: none;
     /* margin: 20px; */
@@ -33,6 +37,8 @@
     color: rgb(255, 69, 125);
 }
 
+
+
 .searchBarContainer{
     display: flex;
     padding: 20px;
@@ -45,4 +51,5 @@
     border: 0.5px;
     padding: 20px;
     max-height: 50px;
+    font-size: medium;
 }
