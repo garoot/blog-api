@@ -36,9 +36,24 @@ export default function BlogList({ Component, pageProps }) {
                             </a>
                         </div>
                         <div className={styles.cardDesc}>
+                            <body>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde, sint.
+                            </body>
 
                         </div>
                         <div className={styles.cardViewsSavesLikes}>
+                            <span>
+                                <img src="/icons/view.png" alt="views" />
+                                <p>1.2k</p>
+                            </span>
+                            <span>
+                                <img src="/icons/saved.png" alt="bookmarks" />
+                                <p>112</p>
+                            </span>
+                            <span>
+                                <img src="/icons/like.png" alt="likes" />
+                                <p>400</p>
+                            </span>
 
                         </div>
                     </div>

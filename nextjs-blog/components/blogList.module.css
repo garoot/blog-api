@@ -99,4 +99,37 @@
 .blogCardRight{
     max-width: 50%;
     margin: -10px 3px 3px 8px;
+    color: white;
 }
+
+.cardTopicSave{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: -10px;
+}
+
+.cardDesc{
+    font-size: 10px;
+    color: rgb(163, 163, 222);
+}
+
+.cardTopicSave img{
+    width: 70%;
+}
+.cardViewsSavesLikes{
+    display: flex;
+    height: 20%;
+    justify-content: space-around;
+    padding-top: 15px;
+}
+.cardViewsSavesLikes span{
+    display: flex;
+    justify-content: space-around;
+    height: 50%;
+    width: 24%;
+    align-items: center;
+
+
+}
+
