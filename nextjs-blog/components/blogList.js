@@ -14,15 +14,20 @@ export default function BlogList({ Component, pageProps }) {
                     <a href="">Animation</a>
                     <a href="">JavaScript</a>
                     <a href="">Python</a>
-                    <input className={styles.tagsInput} type="text" placeholder='type keywords'  />
-                    <a className={styles.tagsClear} href="">Clear</a>
                 </div>
                 <div className={styles.tagsRight}>
+                    <input className={styles.tagsInput} type="text" placeholder='type keywords'  />
+                    <a className={styles.tagsClear} href="">Clear</a>
                     <a href="">Filter</a>
                 </div>
             </div>
 
             <div className={styles.blogsContainer}>
+                <BlogCard/>
+                <BlogCard/>
+                <BlogCard/>
+                <BlogCard/>
+                <BlogCard/>
                 <BlogCard/>
             </div>
 

@@ -1,7 +1,8 @@
 .tagsContainer{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
 }
+
 .tagsLeft {
     display: flex;
     /* width: 50%; */
@@ -9,12 +10,13 @@
     justify-content: space-between;
     align-items: center;
     overflow: hidden;
-    height: 50%;
-    
+    height: 50%;  
 }
+
 .tagsAll{
     background-color: rgb(255, 69, 125);
 }
+
 .tagsLeft a{
     /* margin: 0 25px 0 0; */
     border: 1.3px solid;
@@ -35,7 +37,7 @@
     background-color: rgba(22, 26, 66, 0.764);
     border-radius: 7px;
     padding: 9px;
-    margin: 0px -5px 0px 0;
+    margin: 0px 5px 0px 0;
     width: 20%;
     height: 50%;
 }
@@ -48,6 +50,8 @@
     align-items: center;
     width: 50%;
     display: flex;
+    height: 50%;
+    justify-content: flex-end;
 }
 
 .tagsRight a{
@@ -69,11 +73,14 @@
     justify-content: space-between;
     width: 100%;
     height: 100%;
+    overflow-wrap: normal;
+    flex-wrap: wrap;
 }
 
 .blogCard{
-    width: 50vh;
-    height: 15vh;
+    width: 32%;
+    min-width: 345px;
+    min-height: 150px ;
     display: flex;
     /* justify-content: space-between; */
     /* border: 2px solid; */
@@ -82,6 +89,31 @@
     margin: 20px 15px 15px 0;
     background-color: rgb(22, 26, 66);
 }
+
+
+@media screen and (min-width: 1400px){
+    .blogCard{
+        width: 32%;
+        max-height: 150px;
+    }
+}
+
+@media screen and (max-width: 1400px){
+    .blogCard{
+        width: 45%;
+        max-height: 150px;
+    }
+    .blogsContainer{
+        justify-content: space-around;
+    }
+}
+
+@media screen and (max-width: 1000px){
+    .blogCard{
+        width: 75%;
+    }
+}
+
 
 .cardThumbnailContainer{
     width: 50%;
@@ -93,43 +125,55 @@
     height: 100%;
     object-fit: fill;
     border-radius: 10px;
-
 }
 
 .blogCardRight{
     max-width: 50%;
     margin: -10px 3px 3px 8px;
     color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .cardTopicSave{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: -10px;
+    margin-top: -5px;
+    margin-bottom: -15px;
 }
 
 .cardDesc{
     font-size: 10px;
     color: rgb(163, 163, 222);
+    max-height: 55px;
+    overflow: hidden;
+}
+
+@media screen and (max-height:765px){
+    .cardDesc{
+        display: none;
+    };
 }
 
 .cardTopicSave img{
     width: 70%;
 }
+
 .cardViewsSavesLikes{
     display: flex;
     height: 20%;
     justify-content: space-around;
     padding-top: 15px;
+    margin-bottom: 10px;
 }
+
 .cardViewsSavesLikes span{
     display: flex;
     justify-content: space-around;
     height: 50%;
     width: 24%;
     align-items: center;
-
-
 }
 
