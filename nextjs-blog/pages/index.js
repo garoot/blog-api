@@ -3,6 +3,7 @@ import styles from '../styles/Home.module.css';
 import {getPostsData} from '../utils/posts'
 import Navbar from '../components/navbar';
 import BlogList from '../components/blogList';
+import Sidebar from '../components/sidebar';
 
 export async function getStaticProps() {
   const allPostsData = await getPostsData();
@@ -35,7 +36,7 @@ export default function Home({allPostsData}) {
         </ul> */}
 
         <div className={styles.left}>
-          sidebar
+          <Sidebar/>
         </div>
         <div className={styles.right}>
           <Navbar/>

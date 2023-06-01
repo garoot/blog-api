@@ -6,7 +6,7 @@ import BlogCard from './blogCard';
 export default function BlogList({ Component, pageProps }) {
     return (
         <div>
-            <h2>Blogs!</h2>
+            <h1 style={{color:"white", fontWeight:"500", marginBottom:"30px"}}>Blogs!</h1>
             <div className={styles.tagsContainer}>
                 <div className={styles.tagsLeft}>
                     <a className={styles.tagsAll} href="">All</a>

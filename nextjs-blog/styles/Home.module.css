@@ -4,7 +4,7 @@
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  padding: 10px 20px 10px 10px;
+  padding: 10px 20px 0px 0px;
   /* justify-content: center; */
   /* align-items: center; */
   background-color: rgb(8, 0, 28);
@@ -14,9 +14,19 @@
   /* background-color: red; */
   border: solid;
   width: 14%;
-
 }
 
+@media screen and (min-width: 1200px){
+  .left{
+    width: 200px;
+  }
+}
+
+@media screen and (max-width: 1200px) and (min-width: 600px){
+  .left{
+    width: 150px;
+  }
+}
 .right{
   width: 85%;
   padding: 0 0px 0 10px;
