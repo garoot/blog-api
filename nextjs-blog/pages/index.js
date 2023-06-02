@@ -4,6 +4,7 @@ import {getPostsData} from '../utils/posts'
 import Navbar from '../components/navbar';
 import BlogList from '../components/blogList';
 import Sidebar from '../components/sidebar';
+import BlogDetails from '../components/blogDetails';
 
 export async function getStaticProps() {
   const allPostsData = await getPostsData();
@@ -41,7 +42,10 @@ export default function Home({allPostsData}) {
         <div className={styles.right}>
           <Navbar/>
 
-          <BlogList/>
+          {/* <BlogList/> */}
+
+          <BlogDetails/>
+
         </div>
 
 
