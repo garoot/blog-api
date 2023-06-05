@@ -14,10 +14,10 @@ export default function BlogDetails({  }) {
                         </div>
                         <div className={styles.authorRightBottom}>
                             <div className={styles.publishDate}>
-                                Dec 15, 2023  
+                                Dec 15, 2023  &nbsp;&nbsp;&nbsp;&nbsp;.
                             </div>
                             <div className={styles.readLength}>
-                                5 min read     
+                                5 min read  &nbsp;&nbsp;&nbsp;&nbsp;.
                             </div>
                             <div className={styles.listenButton}>
                                 <img src="icons/listen.png" alt="" />
@@ -38,10 +38,30 @@ export default function BlogDetails({  }) {
             
             </div>
             <div className={styles.middle}>
-
+                <div className={styles.bookmark}>
+                    <img src="/icons/bookmark.png" alt="" />
+                    101
+                </div>
+                <div className={styles.like}>
+                    <img src="/icons/unlike.png" alt="" />
+                    66
+                </div>
+                <div className={styles.share}>
+                    <img src="/icons/share.png" alt="" />
+                </div>
             </div>
             <div className={styles.right}>
-
+                <div className={styles.rightTop}>
+                    <img src="/images/author.png" alt="" />
+                </div>
+                <div className={styles.rightMiddle}>
+                    <p>3.2k followers</p>
+                    <p>Data Scientist, Python Programmer</p>
+                </div>
+                <div className={styles.rightBottom}>
+                    <button className={styles.followButton}>Follow</button>
+                    <img src="/icons/message.png" alt="" />
+                </div>
             </div>
         </div>
     )

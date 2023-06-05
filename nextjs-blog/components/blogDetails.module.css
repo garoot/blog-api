@@ -1,14 +1,18 @@
+.blogContainer{
+    display: flex;
+}
+
 .left{
     width: 70%;
     display: flex;
     flex-direction: column;
     /* align-items: flex-start; */
-    margin: 0px 5px 40px 10px;
+    margin: 20px 5px 40px 10px;
 }
 
 .authorContainer{
     width: 100% ;
-    margin: 20px 0 -30px 0;
+    margin: 0px 0 -30px 0;
     display: flex;
 }
 
@@ -39,12 +43,13 @@
 }
 
 .listenButton{
+    width: 5% !important;
+    display: flex;
     margin: 0 10px 0 10px;
 }
 
-.listenButton{
-    width: 8% !important;
-    display: flex;
+.listenButton img{
+    margin-top: 3px !important;
 }
 
 .left img{
@@ -55,3 +60,73 @@
 .title{
     margin-top: 10px;
 }
+
+.middle{
+    display: flex;
+    flex-direction: column;
+    padding-top: 20%;
+    padding-left: 10px;
+}
+
+.bookmark{
+    display: flex;
+    align-items: center;
+}
+
+.bookmark img{
+    width:35% !important;
+}
+
+.like {
+    display: flex;
+    align-items: center;
+}
+
+.like img{
+    width: 40%;
+    margin: 20px 5px 20px 0px;
+}
+
+.share img{
+    display: flex;
+    margin: 0px 5px 20px 0px;
+    width: 40%;
+}
+
+.right{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0px 10px 5px;
+    width: 20%;
+    text-align: center;
+}
+
+.rightTop img{
+    border-radius: 50%;
+    width: 120%;
+}
+
+.rightMiddle{
+    font-size: small;
+}
+
+.rightBottom{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.rightBottom img{
+    width: 20px;
+    margin-left: 5px;
+}
+
+.followButton{
+    background-color: rgb(148, 229, 250);
+    /* text-decoration: none; */
+    border: none;
+    border-radius: 20px;
+    width: 40%;
+
+}
+
