@@ -4,6 +4,28 @@ export default function BlogDetails({  }) {
     return (
         <div className={styles.blogContainer}>
             <div className={styles.left}>
+                <div className={styles.authorContainer}>
+                    <div className={styles.authorLeft}>
+                        <img src="/images/author.png" alt="" />
+                    </div>
+                    <div className={styles.authorRight}>
+                        <div className={styles.authorName}>
+                            Ahmed Saeed
+                        </div>
+                        <div className={styles.authorRightBottom}>
+                            <div className={styles.publishDate}>
+                                Dec 15, 2023  
+                            </div>
+                            <div className={styles.readLength}>
+                                5 min read     
+                            </div>
+                            <div className={styles.listenButton}>
+                                <img src="icons/listen.png" alt="" />
+                                Listen
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div className={styles.title}>
                     <h1>Panda Quick Guide</h1>
                 </div>
