@@ -9,14 +9,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-size: large;
+    font-weight: 700;
 }
 
 .number p{
     margin-bottom: 0px;
-    font-size: medium;
+    color: white;
 }
 
 .biography{
     color: white;
-    margin: 10px 5px 0px 20px;
+    margin: 10px 5px 0px 30px;
+    font-size: large;
 }

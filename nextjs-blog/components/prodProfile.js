@@ -21,7 +21,17 @@ export default function ProdProfile({ }) {
             </div>
 
             <div className={styles.right}>
-
+                <div className={styles.rightTop}>
+                    <img src="/images/author.png" alt="" />
+                </div>
+                <div className={styles.rightMiddle}>
+                    <p>3.2k followers</p>
+                    <p>Data Scientist, Python Programmer</p>
+                </div>
+                <div className={styles.rightBottom}>
+                    <button className={styles.followButton}>Follow</button>
+                    <img src="/icons/message.png" alt="" />
+                </div>
             </div>
         </div>
     )

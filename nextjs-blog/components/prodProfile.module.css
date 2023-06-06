@@ -1,3 +1,7 @@
+.profProfileContainer{
+    display: flex;
+}
+
 .left{
     width: 80%;
 }
@@ -9,7 +13,7 @@
 }
 
 .leftTop button{
-    margin: 10px 20px 5px 20px;
+    margin: 20px 20px 5px 20px;
     background-color: transparent;
     border: none;
     color: white;
@@ -24,3 +28,40 @@
 /* .hrLine{
     border: 1px solid #4e38f4;
 } */
+.right{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 60px 0px 10px 5px;
+    width: 15%;
+    text-align: center;
+    color: white;
+}
+
+.rightTop img{
+    border-radius: 50%;
+    width: 120%;
+}
+
+.rightMiddle{
+    font-size: small;
+}
+
+.rightBottom{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.rightBottom img{
+    width: 20px;
+    margin-left: 5px;
+}
+
+.followButton{
+    background-color: rgb(148, 229, 250);
+    /* text-decoration: none; */
+    border: none;
+    border-radius: 20px;
+    width: 40%;
+
+}
