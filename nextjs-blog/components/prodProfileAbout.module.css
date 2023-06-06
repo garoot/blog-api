@@ -1,0 +1,22 @@
+.prodNumbers{
+    color: white;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 40px;
+}
+
+.number{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.number p{
+    margin-bottom: 0px;
+    font-size: medium;
+}
+
+.biography{
+    color: white;
+    margin: 10px 5px 0px 20px;
+}

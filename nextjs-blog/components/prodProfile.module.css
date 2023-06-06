@@ -1,0 +1,26 @@
+.left{
+    width: 80%;
+}
+
+.leftTop{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.leftTop button{
+    margin: 10px 20px 5px 20px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: large;
+    padding-bottom: 10px;
+}
+
+.leftTop button:focus{
+    border-bottom: 3px solid #4e38f4;
+}
+
+/* .hrLine{
+    border: 1px solid #4e38f4;
+} */

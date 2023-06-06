@@ -5,6 +5,7 @@ import Navbar from '../components/navbar';
 import BlogList from '../components/blogList';
 import Sidebar from '../components/sidebar';
 import BlogDetails from '../components/blogDetails';
+import ProdProfile from '../components/prodProfile';
 
 export async function getStaticProps() {
   const allPostsData = await getPostsData();
@@ -44,7 +45,8 @@ export default function Home({allPostsData}) {
 
           {/* <BlogList/> */}
 
-          <BlogDetails/>
+          {/* <BlogDetails/> */}
+          <ProdProfile/>
 
         </div>
 
