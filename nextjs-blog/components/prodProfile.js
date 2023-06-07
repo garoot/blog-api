@@ -1,6 +1,7 @@
 import styles from './prodProfile.module.css'
 import ProdProfileAbout from './prodProfileAbout'
-import ProfProfileCourses from './prodProfileCourses'
+import ProdProfileBlogs from './prodProfileBlogs'
+import ProdProfileCourses from './prodProfileCourses'
 
 export default function ProdProfile({ }) {
     return (
@@ -16,7 +17,7 @@ export default function ProdProfile({ }) {
 
                 <div className={styles.leftMain}>
                     {/* <ProdProfileAbout/> */}
-                    <ProfProfileCourses/>
+                    <ProdProfileCourses/>
 
                 </div>
 

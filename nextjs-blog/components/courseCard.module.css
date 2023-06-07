@@ -1,0 +1,135 @@
+.container{
+    width: 28%;
+    background-color: rgb(22, 26, 66);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    color: white; 
+    padding-bottom: 10px;
+}
+
+
+.courseCard:hover{
+    /* height: 30%; */    
+}
+
+.courseCard h3{
+    text-align: center;
+}
+
+/* .cardThumbnail{
+    width: 50%;
+} */
+
+.thumbnail{
+    width:100%;
+    height: 80%;
+    object-fit: fill;
+    border-radius: 20px;
+    margin: 0px 0px -10px 0px;
+}
+
+.cardMiddle{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: -10px 2px -5px 2px;
+}
+.middleLeft{
+    display: flex;
+    flex-direction: column;
+    font-size: small;
+}
+
+.middleLeftTop{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: -20px;
+}
+
+.middleLeftTop img{
+    max-height: 12px;
+    margin: 0 7px 0 0;
+}
+
+.middleLeftBottom{
+    display: flex; 
+    justify-content: space-around;
+    align-items: center;
+}
+
+.middleLeftBottom img{
+    max-height: 20px;
+}
+
+.middleRight img{
+    border-radius: 50%;
+    width: 75%;
+}
+
+.cardBottom{
+    display: flex;
+    flex-direction: column;
+}
+
+.cardBottomTop{
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0px 10px 0px;
+}
+
+.cardBottom button{
+    background: none;
+    border: none;
+    font-size: large;
+    font-weight: 540;
+}
+
+.basicPriceButton{
+    color: #47DEF2;
+}
+
+.basicPriceButton:hover{
+    border: 1px solid #47DEF2;
+    padding: 5px 10px 5px 10px;
+    margin: -5px -5px -5px -5px;
+    border-radius: 30px;
+}
+.basicPriceButton:focus{
+    border: 1px solid #47DEF2;
+    padding: 5px 10px 5px 10px;
+    margin: -5px -5px -5px -5px;
+    border-radius: 30px;
+}
+
+.goldPriceButton{
+    color: #FFC83D;
+}
+
+.goldPriceButton:hover{
+    border: 1px solid #FFC83D;
+    padding: 5px 10px 5px 10px;
+    margin: -5px -5px -5px -5px;
+    border-radius: 30px;
+}
+.goldPriceButton:focus{
+    border: 1px solid #FFC83D;
+    padding: 5px 10px 5px 10px;
+    margin: -5px -5px -5px -5px;
+    border-radius: 30px;
+}
+
+
+.cardBottom hr{
+    width: 90%;
+    margin: 0px 10px 0px 10px;
+}
+
+.cardBottomBottom{
+    display: flex;
+    justify-content: space-around;
+    padding: 0px 20px 0px 20px;
+}
+
+

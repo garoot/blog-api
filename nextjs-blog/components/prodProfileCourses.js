@@ -1,11 +1,11 @@
 import styles from './prodProfileCourses.module.css'
-import BlogCard from './blogCard'
+import CourseCard from './courseCard'
 
-export default function ProfProfileCourses({  }) {
+
+export default function ProdProfileCourses({}) {
     return (
         <div className={styles.container}>
-            <BlogCard/>
-            <BlogCard/>
+            <CourseCard/>
         </div>
     )
 }
