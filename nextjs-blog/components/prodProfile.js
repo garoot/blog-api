@@ -1,5 +1,6 @@
 import styles from './prodProfile.module.css'
 import ProdProfileAbout from './prodProfileAbout'
+import ProfProfileCourses from './prodProfileCourses'
 
 export default function ProdProfile({ }) {
     return (
@@ -7,14 +8,16 @@ export default function ProdProfile({ }) {
             <div className={styles.left}>
 
                 <div className={styles.leftTop}>
+                    <button autoFocus>About</button>
                     <button>Courses</button>
                     <button>Blogs</button>
-                    <button>About</button>
                 </div>
                 {/* <hr className={styles.hrLine}/> */}
 
                 <div className={styles.leftMain}>
-                    <ProdProfileAbout/>
+                    {/* <ProdProfileAbout/> */}
+                    <ProfProfileCourses/>
+
                 </div>
 
 

@@ -1,0 +1,101 @@
+
+.blogCard{
+    width: 32%;
+    min-width: 345px;
+    min-height: 150px ;
+    display: flex;
+    /* justify-content: space-between; */
+    /* border: 2px solid; */
+    border-radius: 10px;
+    /* padding: 3px; */
+    margin: 20px 15px 15px 0;
+    background-color: rgb(22, 26, 66);
+}
+
+
+@media screen and (min-width: 1400px){
+    .blogCard{
+        width: 45%;
+        max-height: 150px;
+    }
+}
+
+@media screen and (max-width: 1400px){
+    .blogCard{
+        width: 45%;
+        max-height: 150px;
+    }
+    .blogsContainer{
+        justify-content: space-around;
+    }
+}
+
+@media screen and (max-width: 1000px){
+    .blogCard{
+        width: 75%;
+    }
+}
+
+
+.cardThumbnailContainer{
+    width: 50%;
+    max-width: 50%;
+}
+
+.thumbnail{
+    width:100%;
+    height: 100%;
+    object-fit: fill;
+    border-radius: 10px;
+}
+
+.blogCardRight{
+    max-width: 50%;
+    margin: -10px 3px 3px 8px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.cardTopicSave{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -5px;
+    margin-bottom: -15px;
+}
+
+.cardDesc{
+    font-size: 10px;
+    color: rgb(163, 163, 222);
+    max-height: 55px;
+    overflow: hidden;
+}
+
+@media screen and (max-height:765px){
+    .cardDesc{
+        display: none;
+    };
+}
+
+.cardTopicSave img{
+    width: 70%;
+}
+
+.cardViewsSavesLikes{
+    display: flex;
+    height: 20%;
+    justify-content: space-around;
+    padding-top: 15px;
+    margin-bottom: 10px;
+}
+
+.cardViewsSavesLikes span{
+    display: flex;
+    justify-content: space-around;
+    height: 50%;
+    width: 24%;
+    align-items: center;
+}
+

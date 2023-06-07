@@ -43,10 +43,10 @@ export default function Home({allPostsData}) {
         <div className={styles.right}>
           <Navbar/>
 
-          {/* <BlogList/> */}
+          <BlogList/>
 
           {/* <BlogDetails/> */}
-          <ProdProfile/>
+          {/* <ProdProfile/> */}
 
         </div>
 

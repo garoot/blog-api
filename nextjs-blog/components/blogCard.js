@@ -1,4 +1,4 @@
-import styles from './blogList.module.css'
+import styles from './blogCard.module.css'
 
 export default function BlogCard({  }) {
     return (
