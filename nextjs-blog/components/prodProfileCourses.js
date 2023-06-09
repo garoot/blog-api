@@ -6,6 +6,9 @@ export default function ProdProfileCourses({}) {
     return (
         <div className={styles.container}>
             <CourseCard/>
+            <CourseCard/>
+            <CourseCard/>
+            <CourseCard/>
         </div>
     )
 }
