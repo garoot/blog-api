@@ -6,6 +6,7 @@ import BlogList from '../components/blogList';
 import Sidebar from '../components/sidebar';
 import BlogDetails from '../components/blogDetails';
 import ProdProfile from '../components/prodProfile';
+import GsapTest from '../components/testing/gsap-test';
 
 export async function getStaticProps() {
   const allPostsData = await getPostsData();
@@ -47,6 +48,8 @@ export default function Home({allPostsData}) {
 
           {/* <BlogDetails/> */}
           <ProdProfile/>
+          {/* <GsapTest/> */}
+
 
         </div>
 

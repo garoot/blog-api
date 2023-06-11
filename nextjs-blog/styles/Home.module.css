@@ -4,7 +4,7 @@
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  padding: 10px 20px 0px 0px;
+  padding: 10px 0px 0px 0px;
   /* justify-content: center; */
   /* align-items: center; */
   background-color: rgb(8, 0, 28);
@@ -24,11 +24,14 @@
 
 @media screen and (max-width: 1200px) and (min-width: 600px){
   .left{
-    width: 150px;
+    width: 15%;
+  }
+  .right{
+    width: 85%;
   }
 }
 .right{
-  width: 85%;
+  width: 86%;
   padding: 0 0px 0 10px;
 }
 
@@ -36,5 +39,12 @@
   .grid {
     width: 100%;
     flex-direction: column;
+  }
+
+  .left{
+    width: 18%;
+  }
+  .right{
+    width: 82%
   }
 }

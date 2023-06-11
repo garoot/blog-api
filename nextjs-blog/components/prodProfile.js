@@ -5,7 +5,7 @@ import ProdProfileCourses from './prodProfileCourses'
 
 export default function ProdProfile({ }) {
     return (
-        <div className={styles.profProfileContainer}>
+        <div className={styles.prodProfileContainer}>
             <div className={styles.left}>
 
                 <div className={styles.leftTop}>
@@ -20,7 +20,6 @@ export default function ProdProfile({ }) {
                     <ProdProfileCourses/>
 
                 </div>
-
 
             </div>
 

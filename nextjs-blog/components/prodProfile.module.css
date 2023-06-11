@@ -1,10 +1,20 @@
-.profProfileContainer{
+.prodProfileContainer{
     display: flex;
+    justify-content: space-between;
+    padding-right: 30px;
+}
+
+
+@media screen and (min-width:850px){
+    .left{
+        width: 80%;
+    }
 }
 
 .left{
-    width: 80%;
+    width: 70%;
 }
+
 
 .leftTop{
     width: 100%;

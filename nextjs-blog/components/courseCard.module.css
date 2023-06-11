@@ -10,6 +10,10 @@
     min-width: 220px;
 }
 
+@media screen and() {
+    
+}
+
 
 .courseCard:hover{
     /* height: 30%; */    
