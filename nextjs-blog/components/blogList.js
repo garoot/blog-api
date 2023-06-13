@@ -2,8 +2,17 @@ import styles from './blogList.module.css'
 import Link from 'next/link';
 import Image from 'next/image';
 import BlogCard from './blogCard';
+import { createContext, useEffect, useState } from 'react';
+import axios from 'axios';
+// import {GetStaticProps} from 'next'
 
-export default function BlogList({ Component, pageProps }) {
+
+const BlogList = ({ blogs }) => {
+
+    
+    useEffect(() => {
+        console.log(blogs)
+    },[])
     return (
         <div>
             <h1 style={{color:"white", fontWeight:"500", marginBottom:"30px"}}>Blogs!</h1>
@@ -23,14 +32,22 @@ export default function BlogList({ Component, pageProps }) {
             </div>
 
             <div className={styles.blogsContainer}>
-                <BlogCard/>
-                <BlogCard/>
-                <BlogCard/>
-                <BlogCard/>
-                <BlogCard/>
-                <BlogCard/>
-            </div>
 
+                {blogs.map((blog) => (
+                    <BlogCard blog={blog}/>
+                    
+                ))}
+
+                {/* <BlogCard/>
+                <BlogCard/>
+                <BlogCard/>
+                <BlogCard/>
+                <BlogCard/>
+                <BlogCard/> */}
+            </div>
         </div>
+            
     )
 }
+
+export default BlogList

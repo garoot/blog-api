@@ -9,15 +9,19 @@ import ProdProfile from '../components/prodProfile';
 import GsapTest from '../components/testing/gsap-test';
 
 export async function getStaticProps() {
-  const allPostsData = await getPostsData();
+
+  const allBlogs = await getPostsData();
+
   return {
     props: {
-      allPostsData,
+      allBlogs,
     }
   }
 }
 
-export default function Home({allPostsData}) {
+
+
+export default function Home({allBlogs}) {
   return (
     <div className={styles.container}>
       <Head>
@@ -25,29 +29,16 @@ export default function Home({allPostsData}) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-
-
-      {/* {allPostsData.blogs[0].title} */}
-
-        {/* <ul>
-          {allPostsData.blogs.map( ({title}) => (
-            <li>
-              {title}
-              <br />
-            </li>
-          ))}
-        </ul> */}
-
         <div className={styles.left}>
           <Sidebar/>
         </div>
         <div className={styles.right}>
           <Navbar/>
 
-          {/* <BlogList/> */}
+          <BlogList blogs={allBlogs.blogs}/>
 
           {/* <BlogDetails/> */}
-          <ProdProfile/>
+          {/* <ProdProfile/> */}
           {/* <GsapTest/> */}
 
 

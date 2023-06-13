@@ -1,5 +1,6 @@
 .container {
   min-height: 100vh;
+  height: 100%;
   /* padding: 0 0.5rem; */
   display: flex;
   justify-content: space-between;
@@ -28,11 +29,13 @@
   }
   .right{
     width: 85%;
+    height: 100%;
   }
 }
 .right{
   width: 86%;
   padding: 0 0px 0 10px;
+  height: 100%;
 }
 
 @media (max-width: 600px) {
