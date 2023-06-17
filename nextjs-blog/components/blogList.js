@@ -34,8 +34,7 @@ const BlogList = ({ blogs }) => {
             <div className={styles.blogsContainer}>
 
                 {blogs.map((blog) => (
-                    <BlogCard blog={blog}/>
-                    
+                    <BlogCard key={blog._id} blog={blog}/>
                 ))}
 
                 {/* <BlogCard/>

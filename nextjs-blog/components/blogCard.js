@@ -13,6 +13,8 @@ export default function BlogCard( {blog} ) {
     const [reads, setReads] = useState()
     const [likes, setLikes] = useState()
 
+    const imgURL = 'http://localhost:8000/public/blogPics/'
+
     useEffect( () => {
         setTitle(blog.title)
         // setBody(blog.content)
@@ -22,14 +24,17 @@ export default function BlogCard( {blog} ) {
         setReads(blog.usersRead)
         console.log(title)
 
+
     }, [])
 
     return (
 
-        <div className={styles.blogCard}>
-                    
+        <div className={styles.blogCard} id='blogCard'>
+            {/* {console.log(blog.blogPic)} */}
+            
             <div className={styles.cardThumbnailContainer}>
-                <img className={styles.thumbnail} src={blog.pic} alt="" />
+                <img className={styles.thumbnail} src={imgURL+thumbnail} alt="" />
+                {/* <p>{blog.blogPic}</p> */}
 
             </div>
 
