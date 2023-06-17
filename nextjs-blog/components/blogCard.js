@@ -18,6 +18,7 @@ export default function BlogCard( {blog} ) {
     useEffect( () => {
         setTitle(blog.title)
         // setBody(blog.content)
+        setLikes(blog.usersLikes)
         setHeadline(blog.headline)
         setThumbnail(blog.blogPic)
         setBookmarks(blog.usersSaved)
@@ -63,7 +64,11 @@ export default function BlogCard( {blog} ) {
                         </span>
                         <span>
                             <img src="/icons/like.png" alt="likes" />
-                            <p>400</p>
+                            <p>
+                                { 
+                                blog.likes? blog.likes: '0'
+                                }
+                            </p>
                         </span>
                     </div>
             </div>

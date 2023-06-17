@@ -37,6 +37,10 @@ const BlogSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'User'
     }],
+    usersLikes: [{
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    }],
     category: {
         type: Schema.Types.ObjectId,
         ref: "Category"
