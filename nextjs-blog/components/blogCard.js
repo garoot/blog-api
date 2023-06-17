@@ -57,7 +57,9 @@ export default function BlogCard( {blog} ) {
                         </span>
                         <span>
                             <img src="/icons/saved.png" alt="bookmarks" />
-                            <p>{blog.bookmarks}</p>
+                            <p>{
+                                blog.bookmarks? blog.bookmarks: '0'
+                            }</p>
                         </span>
                         <span>
                             <img src="/icons/like.png" alt="likes" />
