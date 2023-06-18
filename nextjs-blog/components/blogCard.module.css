@@ -3,6 +3,7 @@
     width: 32%;
     min-width: 345px;
     min-height: 150px ;
+    max-width: 450px;
     display: flex;
     /* justify-content: space-between; */
     /* border: 2px solid; */
@@ -64,7 +65,7 @@
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    margin-top: -5px;
+    margin-top: 0px;
     margin-bottom: -15px;
 }
 
