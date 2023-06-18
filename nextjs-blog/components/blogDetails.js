@@ -1,8 +1,9 @@
 import styles from './blogDetails.module.css'
 
-export default function BlogDetails({  }) {
+export default function BlogDetails({ props }) {
     return (
         <div className={styles.blogContainer}>
+            {/* {props.blogId} */}
             <div className={styles.left}>
                 <div className={styles.authorContainer}>
                     <div className={styles.authorLeft}>

@@ -1,9 +1,10 @@
 import styles from './blogList.module.css'
-import Link from 'next/link';
+// import Link from 'next/link';
 import Image from 'next/image';
 import BlogCard from './blogCard';
 import { createContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import {Router, Link, navigate} from '@reach/router'
 // import {GetStaticProps} from 'next'
 
 
@@ -34,7 +35,9 @@ const BlogList = ({ blogs }) => {
             <div className={styles.blogsContainer}>
 
                 {blogs.map((blog) => (
-                    <BlogCard key={blog._id} blog={blog}/>
+                    <Link to={`/blog`} state={{blogId: blog._id}} style={{textDecoration: 'none'}} >
+                        <BlogCard className="blogCard" key={blog._id} blog={blog}/>                    
+                    </Link>
                 ))}
 
                 {/* <BlogCard/>

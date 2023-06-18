@@ -1,6 +1,6 @@
 
 .blogCard{
-    width: 32%;
+    width: 100% !important;
     min-width: 345px;
     min-height: 150px ;
     max-width: 450px;

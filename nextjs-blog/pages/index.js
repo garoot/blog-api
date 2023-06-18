@@ -7,6 +7,7 @@ import Sidebar from '../components/sidebar';
 import BlogDetails from '../components/blogDetails';
 import ProdProfile from '../components/prodProfile';
 import GsapTest from '../components/testing/gsap-test';
+import { Router } from '@reach/router';
 
 export async function getStaticProps() {
 
@@ -35,7 +36,16 @@ export default function Home({allBlogs}) {
         <div className={styles.right}>
           <Navbar/>
 
-          <BlogList blogs={allBlogs.blogs}/>
+          <Router>
+
+            <BlogList 
+              path="/"
+              blogs={allBlogs.blogs}
+            />
+            <BlogDetails path="/blog"/>
+
+          </Router>
+
 
           {/* <BlogDetails/> */}
           {/* <ProdProfile/> */}
