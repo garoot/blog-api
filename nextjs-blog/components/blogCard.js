@@ -23,7 +23,6 @@ export default function BlogCard( {blog} ) {
         setThumbnail(blog.blogPic)
         setBookmarks(blog.usersSaved)
         setReads(blog.usersRead)
-        console.log(title)
 
 
     }, [])
