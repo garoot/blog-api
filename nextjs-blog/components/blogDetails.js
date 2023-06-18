@@ -1,9 +1,13 @@
+import { useEffect } from 'react'
 import styles from './blogDetails.module.css'
 
-export default function BlogDetails({ props }) {
+export default function BlogDetails(props) {
+    useEffect(() => {
+        console.log(props.blogId)
+    }, [])
     return (
         <div className={styles.blogContainer}>
-            {/* {props.blogId} */}
+            {/* {blogId} */}
             <div className={styles.left}>
                 <div className={styles.authorContainer}>
                     <div className={styles.authorLeft}>

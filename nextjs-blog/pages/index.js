@@ -42,7 +42,7 @@ export default function Home({allBlogs}) {
               path="/"
               blogs={allBlogs.blogs}
             />
-            <BlogDetails path="/blog"/>
+            <BlogDetails path="/blog/:blogId"/>
 
           </Router>
 

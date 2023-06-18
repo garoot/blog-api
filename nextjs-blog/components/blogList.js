@@ -11,9 +11,9 @@ import {Router, Link, navigate} from '@reach/router'
 const BlogList = ({ blogs }) => {
 
     
-    useEffect(() => {
-        console.log(blogs)
-    },[])
+    // useEffect(() => {
+    //     console.log(blogs)
+    // },[])
     return (
         <div>
             <h1 style={{color:"white", fontWeight:"500", marginBottom:"30px"}}>Blogs!</h1>
@@ -34,8 +34,9 @@ const BlogList = ({ blogs }) => {
 
             <div className={styles.blogsContainer}>
 
-                {blogs.map((blog) => (
-                    <Link to={`/blog`} state={{blogId: blog._id}} style={{textDecoration: 'none'}} >
+                {blogs.map((blog) =>  (
+                    // maybe try next/link
+                    <Link to={`/blog/${blog._id}`} state={{blogId: blog._id}} style={{textDecoration: 'none'}} >
                         <BlogCard className="blogCard" key={blog._id} blog={blog}/>                    
                     </Link>
                 ))}
