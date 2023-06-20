@@ -2,16 +2,25 @@ import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import {getPostsData} from '../utils/posts'
 import Navbar from '../components/navbar';
-import BlogList from '../components/blogList';
+// import BlogList from './blogList/blogList';
+// import BlogList from '../components/blogList';
+import BlogList from './blogList/page';
 import Sidebar from '../components/sidebar';
-import BlogDetails from '../components/blogDetails';
+// import BlogDetails from '../components/blogDetails';
+import BlogDetails from './blogDetails/page';
+// import BlogDetails from './blogDetails/blogDetails';
 import ProdProfile from '../components/prodProfile';
 import GsapTest from '../components/testing/gsap-test';
 import { Router } from '@reach/router';
+import { useEffect, useState } from 'react';
 
 export async function getStaticProps() {
 
-  const allBlogs = await getPostsData();
+  // const allBlogs = await getPostsData();
+  const data = await fetch('http://localhost:8000/blogs')
+  const allBlogs = await data.json()
+
+  // console.log(allBlogs)
 
   return {
     props: {
@@ -21,8 +30,16 @@ export async function getStaticProps() {
 }
 
 
-
 export default function Home({allBlogs}) {
+
+  // const [hasMounted, setHadMounted] = useState(false);
+  // useEffect(() => {
+  //   setHadMounted(true)
+  // }, [])
+
+  // if(!hasMounted){
+  //   return null
+  // }
   return (
     <div className={styles.container}>
       <Head>
@@ -34,9 +51,10 @@ export default function Home({allBlogs}) {
           <Sidebar/>
         </div>
         <div className={styles.right}>
+
           <Navbar/>
 
-          <Router>
+          {/* <Router>
 
             <BlogList 
               path="/"
@@ -44,7 +62,7 @@ export default function Home({allBlogs}) {
             />
             <BlogDetails path="/blog/:blogId"/>
 
-          </Router>
+          </Router> */}
 
 
           {/* <BlogDetails/> */}

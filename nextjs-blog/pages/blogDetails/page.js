@@ -1,13 +1,23 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './blogDetails.module.css'
+import {useRouter} from 'next/router'
+
 
 export default function BlogDetails(props) {
-    useEffect(() => {
-        console.log(props.blogId)
-    }, [])
+    // useEffect(() => {
+    //     console.log(props.blogId)
+    // }, [])
+    // const [hasMounted, setHadMounted] = useState(false);
+    // useEffect(() => {
+    //     setHadMounted(true)
+    // }, [])
+
+    // if(!hasMounted){
+    //     return null
+    // }
+
     return (
         <div className={styles.blogContainer}>
-            {/* {blogId} */}
             <div className={styles.left}>
                 <div className={styles.authorContainer}>
                     <div className={styles.authorLeft}>

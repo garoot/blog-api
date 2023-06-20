@@ -1,20 +1,26 @@
 import styles from './blogList.module.css'
-import Link from 'next/link';
+// import Link from 'next/link';
 import Image from 'next/image';
-import BlogCard from './blogCard';
+import BlogCard from '../../components/blogCard';
 import { createContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import dynamic from 'next/dynamic'
-// import {Router, Link, navigate} from '@reach/router'
+import {Router, Link, navigate} from '@reach/router'
 // import {GetStaticProps} from 'next'
 
 
 const BlogList = ({ blogs }) => {
 
     
-    useEffect(() => {
-        console.log(blogs)
-    },[])
+
+    // const [hasMounted, setHadMounted] = useState(false);
+    // useEffect(() => {
+    //     setHadMounted(true)
+    // }, [])
+
+    // if(!hasMounted){
+    //     return null
+    // }
     return (
         <div>
             <h1 style={{color:"white", fontWeight:"500", marginBottom:"30px"}}>Blogs!</h1>
@@ -37,8 +43,8 @@ const BlogList = ({ blogs }) => {
 
                 {blogs.map((blog) =>  (
                     // maybe try next/link
-                    <Link href={`/blog/${blog._id}`} state={{blogId: blog._id}} style={{textDecoration: 'none'}} >
-                        <BlogCard className="blogCard" key={blog._id} blog={blog}/>                    
+                    <Link to={`/blog/${blog._id}`} style={{textDecoration: 'none'}} >
+                        <BlogCard key={blog._id} className="blogCard" blog={blog}/>                    
                     </Link>
                 ))}
 

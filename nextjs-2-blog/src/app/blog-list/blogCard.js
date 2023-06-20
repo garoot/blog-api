@@ -1,6 +1,8 @@
+"use client"
 import { useContext, useEffect, useState } from 'react'
 import styles from './blogCard.module.css'
 // import { AppContext } from '../pages/blogList'
+
 
 export default function BlogCard( {blog} ) {
 
@@ -49,23 +51,23 @@ export default function BlogCard( {blog} ) {
                     <div className={styles.cardViewsSavesLikes}>
                         <span>
                             <img src="/icons/view.png" alt="views" />
-                            <p>{
+                            {
                                 blog.reads? blog.reads: '0'
-                            }</p>
+                            }
                         </span>
                         <span>
                             <img src="/icons/saved.png" alt="bookmarks" />
-                            <p>{
+                            {
                                 blog.bookmarks? blog.bookmarks: '0'
-                            }</p>
+                            }
                         </span>
                         <span>
                             <img src="/icons/like.png" alt="likes" />
-                            <p>
+                            
                                 { 
                                 blog.likes? blog.likes: '0'
                                 }
-                            </p>
+                            
                         </span>
                     </div>
             </div>
@@ -73,5 +75,4 @@ export default function BlogCard( {blog} ) {
         </div>
     )
 }
-
 

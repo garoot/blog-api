@@ -1,0 +1,146 @@
+.sidebarContainer{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(18, 23, 72);
+    height: 100%;
+    justify-content: space-between;
+    padding-bottom: 40px;
+}
+
+@media screen and (max-width:710px){
+    .sidebarContainer button{
+        display:none
+    }
+    .sidebarContainer hr{
+        display: none;
+    }
+    .logo {
+        min-width: 78px;
+        min-height: 78px;
+    }
+}
+@media screen and (min-width:710px){
+    .sidebar2{
+        display: none !important;
+    }    
+}
+
+
+
+.sidebarLogo{
+    display: flex;
+    justify-content: center;
+    margin-top: -20px;
+    margin-bottom: 20px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    border-right: 5px solid;
+    border-image: linear-gradient(45deg,#915efd, #1143f9e8) 1;
+    background-color: rgb(8, 0, 28);
+}
+.sidebarContainer img{
+    width: 100%;
+}
+
+.sidebarLogo{
+    min-width: 83px;
+}
+
+.sidebarContainer button{
+    border: none;
+    text-align: left;
+    padding: 5px;
+    background-color: transparent;
+    color: white;
+    align-self: self-start;
+    padding-left: 10px;
+    font-size: larger;
+    font-weight: 500;
+    /* font-family: ; */
+    width: 100%;
+}
+
+.sidebarContainer button:hover{
+    background-color: rgb(8, 0, 28);
+}
+
+.sidebarcontainer button:focus{
+    border-left: 4px solid;
+    border-color: #4e38f4;
+}
+
+.sidebarContainer hr{
+    width: 90%;
+}
+
+.gold{
+    color:  gold !important;
+}
+
+.sidebarTop{
+
+}
+
+.sidebarBottom{
+
+}
+
+.sidebar2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+}
+
+.sidebar2 ul{
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar2 nav{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sidebar2 img{
+    width: 45px;
+    margin-top: 10px;
+}
+
+.subnav {
+    background: transparent;
+    border-radius: 0 5em 5em 0;
+    padding: .5em;
+    clip-path: ellipse(20% 20% at 50% -200%);
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    width: 10%;
+}
+
+.sidebar2 {
+    display: flex;
+    /* width: 150%; */
+    align-items: center;
+    flex-direction: column;
+    /* justify-content: flex-end; */
+    border-bottom:1px solid;
+    padding-right: 30px;
+    padding-left: 20px;
+
+    .activator {
+        padding: 0.4em;
+        border-radius: 100%;
+        cursor: pointer;
+        max-height: 50px;
+        max-width: 50px;
+    }
+}
+.activator:hover {
+    background: rgb(8, 0, 28);
+}
+
+
