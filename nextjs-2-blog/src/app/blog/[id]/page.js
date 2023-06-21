@@ -5,11 +5,20 @@ import styles from './blogDetails.module.css'
 // import {useRouter} from 'next/router'
 
 
-export default function BlogDetails(props) {
+export default async function BlogDetails(props) {
 
-    
+    // const findBlog =  () => {
 
-    console.log(props)
+    const data = await fetch(`http://127.0.0.1:8000/blogs/find/${props.params.id}`)
+    const blog = await data.json()
+    console.log(blog)
+        
+    // }
+
+    // findBlog();
+
+
+
 
     return (
         <div className={styles.blogContainer}>

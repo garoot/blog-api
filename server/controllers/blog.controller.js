@@ -6,7 +6,7 @@ const Comment = require('../models/comment.model')
 const Category = require('../models/category.model')
 
 module.exports.getOneBlog = (req, res) => {
-    Blog.findById({_id: req.body.blogId}, (err, blog) => {
+    Blog.findById({_id: req.params.blogId}, (err, blog) => {
         if(err){
             res.json({error:err})
         }
