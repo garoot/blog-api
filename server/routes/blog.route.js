@@ -15,6 +15,10 @@ router
 //     .put(blogController.saveBlog)
 
 router
+    .route('/find')
+    .get(blogController.getOneBlog)
+
+router
     .route('/readBlog')
     .put(blogController.readBlog)
 

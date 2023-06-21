@@ -1,4 +1,5 @@
 
+"use client"
 
 import styles from './blogList.module.css'
 import Link from 'next/link';
@@ -12,16 +13,8 @@ import BlogCard from './blogCard';
 // import {GetStaticProps} from 'next'
 
 
-export default async function BlogList({  }) {
+export async function BlogList () {
 
-    // const [hasMounted, setHadMounted] = useState(false);
-    // useEffect(() => {
-    //     setHadMounted(true)
-    // }, [])
-
-    // if(!hasMounted){
-    //     return null
-    // }
     const data = await fetch('http://localhost:8000/blogs')
     const allBlogs = await data.json()
 
@@ -45,12 +38,11 @@ export default async function BlogList({  }) {
 
             <div className={styles.blogsContainer}>
 
-                {allBlogs.blogs.map((blog) =>  (
-                    // <Link href={`/blog/${blog._id}`} style={{textDecoration: 'none'}} >
-                        <BlogCard href={`/blog/${blog._id}`} key={blog._id} className="blogCard" blog={blog}/>                    
-
-                    // {/* </Link> */}
-                ))}
+                {allBlogs.blogs.map((blog) =>  {
+                    return (<Link href={`/blog/${blog._id}`} style={{textDecoration: 'none'}} >
+                        <BlogCard href={`/blog/${blog._id}`} key={blog._id} className="blogCard" blog={blog} blogs={allBlogs}/>                    
+                    </Link> )
+                })}
 
                 {/* <BlogCard/>
                 <BlogCard/>
@@ -63,4 +55,6 @@ export default async function BlogList({  }) {
             
     )
 }
+
+export default dynamic (() => Promise.resolve(BlogList), {ssr: false})
 

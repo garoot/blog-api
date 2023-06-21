@@ -5,6 +5,20 @@ const Keyword = require('../models/keyword.model')
 const Comment = require('../models/comment.model')
 const Category = require('../models/category.model')
 
+module.exports.getOneBlog = (req, res) => {
+    Blog.findById({_id: req.body.blogId}, (err, blog) => {
+        if(err){
+            res.json({error:err})
+        }
+        else {
+            res.json({
+                message:"blog details retrieved successfully!",
+                blog: blog
+            })
+        }
+    })
+}
+
 module.exports.getBlogs = (req,res) => {
     Blog.find()
         // .populate({
