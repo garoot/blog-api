@@ -1,5 +1,7 @@
 
 const Producer = require('../models/producer.model')
+var bcrypt = require("bcryptjs");
+
 
 module.exports.postProducer = (req, res) => {
     const firstName = req.body.firstName;
@@ -11,6 +13,7 @@ module.exports.postProducer = (req, res) => {
     const country = req.body.country;
     const gender = req.body.gender;
     const username = req.body.username;
+    const password = bcrypt.hashSync(req.body.password, 8);
     const email = req.body.email;
     const phoneNumber = req.body.phoneNumber;
     const producer = new Producer({
@@ -23,6 +26,7 @@ module.exports.postProducer = (req, res) => {
         country: country,
         gender: gender,
         username: username,
+        password: password,
         email: email,
         phoneNumber: phoneNumber,
     })

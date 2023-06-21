@@ -1,5 +1,5 @@
 require('./config/mongoose.config')
-// require('./models/producer.model')
+require('./models/producer.model')
 
 
 const express = require('express')
@@ -23,7 +23,7 @@ app.use('/public/', express.static('public'))
 
 // const mainRoute = require('./routes/main.route')
 const blogRoute = require('./routes/blog.route')
-// const producerRoute = require('./routes/producer.route')
+const producerRoute = require('./routes/producer.route')
 const userRoute = require('./routes/user.route')
 const courseRoute = require('./routes/course.route')
 const keywordRoute =require('./routes/keyword.route')
@@ -39,7 +39,7 @@ require('./routes/user.route')(app);
 
 // entry router before branching into subsequent routes
 app.use('/blogs', blogRoute)
-// app.use('/producers', producerRoute)
+app.use('/producers', producerRoute)
 // app.use('/users', userRoute)
 app.use('/courses', courseRoute)
 app.use('/keywords', keywordRoute)

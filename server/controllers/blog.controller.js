@@ -5,30 +5,40 @@ const Keyword = require('../models/keyword.model')
 const Comment = require('../models/comment.model')
 const Category = require('../models/category.model')
 
-module.exports.getOneBlog = (req, res) => {
-    Blog.findById({_id: req.params.blogId}, (err, blog) => {
-        if(err){
-            res.json({error:err})
-        }
-        else {
-            res.json({
-                message:"blog details retrieved successfully!",
-                blog: blog
-            })
-        }
+module.exports.getOneBlog = async (req, res) => {
+    // Blog.findById({_id: req.params.blogId}, (err, blog) => {
+    //     if(err){
+    //         res.json({error:err})
+    //     }
+    //     else {
+    //         res.json({
+    //             message:"blog details retrieved successfully!",
+    //             blog: blog
+    //         })
+    //     }
+    // })
+    await Blog.findOne({_id: req.params.blogId})
+    .populate('producer')
+    .then(data => {
+        res.status(200).json({
+            blog: data,
+            producer: data.producer
+        })
     })
+
+    // .populate('producer')
 }
 
 module.exports.getBlogs = (req,res) => {
     Blog.find()
         // .populate({
-        //     path: 'comments',
+        //     path: 'producer',
         //     populate: {
-        //         path: 'creator',
+        //         path: 'producer',
         //         model: 'User'
         //     }
         // })
-        .populate('category')
+        .populate('producer')
         .then(data => {
             res.status(200).json({
                 message: "Blogs received successfully",
