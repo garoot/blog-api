@@ -3,6 +3,7 @@
 // import { useEffect, useState } from 'react'
 import styles from './blogDetails.module.css'
 // import {useRouter} from 'next/router'
+import {Image} from 'next/image'
 
 
 export default async function BlogDetails(props) {
@@ -11,12 +12,11 @@ export default async function BlogDetails(props) {
 
     const data = await fetch(`http://127.0.0.1:8000/blogs/find/${props.params.id}`)
     const blog = await data.json()
-    console.log(blog)
+    // console.log(blog)
         
     // }
 
     // findBlog();
-
 
 
 

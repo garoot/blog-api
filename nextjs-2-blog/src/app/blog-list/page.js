@@ -39,7 +39,7 @@ export async function BlogList () {
             <div className={styles.blogsContainer}>
 
                 {allBlogs.blogs.map((blog) =>  {
-                    return (<Link href={`/blog/${blog._id}`} style={{textDecoration: 'none'}} >
+                    return (<Link key={blog._id} href={`/blog/${blog._id}`} style={{textDecoration: 'none'}} >
                         <BlogCard href={`/blog/${blog._id}`} key={blog._id} className="blogCard" blog={blog} blogs={allBlogs}/>                    
                     </Link> )
                 })}
