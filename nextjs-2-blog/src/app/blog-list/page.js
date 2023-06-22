@@ -1,5 +1,5 @@
 
-"use client"
+// "use client"
 
 import styles from './blogList.module.css'
 import Link from 'next/link';
@@ -17,6 +17,7 @@ export async function BlogList () {
 
     const data = await fetch('http://localhost:8000/blogs')
     const allBlogs = await data.json()
+    console.log(allBlogs.message)
 
     return (
         <div>
@@ -55,6 +56,8 @@ export async function BlogList () {
             
     )
 }
+
+// export default BlogList
 
 export default dynamic (() => Promise.resolve(BlogList), {ssr: false})
 

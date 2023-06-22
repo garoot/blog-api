@@ -3,21 +3,36 @@
 // import { useEffect, useState } from 'react'
 import styles from './blogDetails.module.css'
 // import {useRouter} from 'next/router'
-import {Image} from 'next/image'
+import Image from 'next/image'
 
 
 export default async function BlogDetails(props) {
 
-    // const findBlog =  () => {
+    // const findBlog =  async () => {
 
-    const data = await fetch(`http://127.0.0.1:8000/blogs/find/${props.params.id}`)
-    const blog = await data.json()
-    // console.log(blog)
-        
+    const data = (await fetch(`http://127.0.0.1:8000/blogs/find/${props.params.id}`))
+    console.log(props.params.id)
+    const blogData = await data.json()
+    // for some silly weird reason, it has to be done in 
+    // this order to capture the producer
+    // otherwise, you can include the producer in backend
+    const blog = blogData.blog
+    const producer = blog.producer
+
+    // converting json data to (month day, year)
+    const jsonDate = blog.createdAt
+    const date = new Date(jsonDate)
+    const formattedDate = date.toLocaleDateString("end-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+    })
+
+    console.log(formattedDate)
     // }
 
     // findBlog();
-
+    // console.log(blog)
 
 
     return (
@@ -29,11 +44,11 @@ export default async function BlogDetails(props) {
                     </div>
                     <div className={styles.authorRight}>
                         <div className={styles.authorName}>
-                            Ahmed Saeed
+                            {producer.firstName +" "+ producer.lastName}
                         </div>
                         <div className={styles.authorRightBottom}>
                             <div className={styles.publishDate}>
-                                Dec 15, 2023  &nbsp;&nbsp;&nbsp;&nbsp;.
+                                {formattedDate}  &nbsp;&nbsp;&nbsp;&nbsp;.
                             </div>
                             <div className={styles.readLength}>
                                 5 min read  &nbsp;&nbsp;&nbsp;&nbsp;.
@@ -46,24 +61,24 @@ export default async function BlogDetails(props) {
                     </div>
                 </div>
                 <div className={styles.title}>
-                    <h1>Panda Quick Guide</h1>
+                    <h1>{blog.title}</h1>
                 </div>
                 <div className={styles.blogThumbnail}>
                     <img src="/images/image.png" alt="" />
                 </div>
                 <div className={styles.blogContent}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Asperiores maiores laboriosam consequuntur assumenda at quidem nesciunt recusandae quod dolores doloremque doloribus nisi expedita, reprehenderit saepe provident similique! Voluptate sed ea earum ratione molestiae suscipit consequuntur saepe nulla, quidem officia minus aperiam eaque autem quisquam in? Ducimus eos, nisi commodi et iste eligendi. Nemo, quo! Explicabo expedita adipisci, repellendus voluptas pariatur, praesentium quia libero itaque distinctio inventore saepe quae similique molestias veniam! Numquam aut debitis recusandae odio asperiores mollitia eligendi maiores dolore aliquam adipisci neque quidem, sunt doloribus repellat corporis tempora eveniet hic repudiandae libero nobis assumenda eos placeat minus! Beatae, labore. Ullam numquam quibusdam, odit et totam dolor quasi, dolorum quod porro asperiores perspiciatis facilis autem ex quas vitae inventore quidem laboriosam unde, beatae eaque! Magnam, rem. Natus ex labore assumenda non in praesentium quo sequi beatae nemo laborum cupiditate tempora pariatur perferendis reiciendis provident qui ut, at dolore quam. Eius, sint? Similique necessitatibus vel eos inventore libero architecto obcaecati ipsam laudantium doloribus, quam, fuga et incidunt illum eius perspiciatis ipsum illo totam molestiae mollitia! A voluptatem, magnam nemo exercitationem at doloremque quisquam? Amet modi possimus minima id sapiente enim quaerat ad fuga dignissimos obcaecati in inventore sed quibusdam nisi accusamus nobis, voluptatum, quisquam aut adipisci consequuntur voluptas laboriosam reprehenderit voluptates soluta. Esse repellendus nulla inventore amet, maiores culpa aperiam veniam, explicabo aspernatur adipisci aliquam? Velit eius blanditiis eaque consequatur tenetur voluptates, consectetur magni hic. Cupiditate numquam illo laudantium, vero dicta sint ab recusandae quasi ipsam odit? Laboriosam ad fuga modi vitae eveniet illum, quas officiis voluptates molestiae, suscipit nesciunt totam ullam expedita. Laudantium, blanditiis expedita! Eum voluptatum quae assumenda ducimus officiis enim libero in quaerat, cumque non? Doloribus, recusandae asperiores ab laboriosam, similique iusto blanditiis impedit nam a eaque necessitatibus reiciendis ratione, labore esse sint consequatur debitis consequuntur quisquam dignissimos aliquam ullam veritatis? Nam, nostrum. Rerum debitis aliquid distinctio blanditiis praesentium quo ea. Repellendus eius quis, soluta laudantium ipsam nam saepe est voluptatibus ex aperiam architecto atque id sequi voluptate quasi! Saepe deleniti illum veniam corrupti dolores obcaecati aspernatur sit atque suscipit, ad explicabo dolor rerum officiis libero, consequuntur eaque! Atque voluptas corrupti aliquid nulla suscipit, id similique debitis omnis, non in cum quaerat impedit minus. Tempore, tempora? Sequi, odio suscipit voluptas doloremque beatae necessitatibus debitis dolor unde quos est voluptates pariatur id amet error fugit aperiam optio, repellendus, culpa odit explicabo aut a provident delectus. Ea, dolores illum.
+                    {blog.content}
                 </div>
             
             </div>
             <div className={styles.middle}>
                 <div className={styles.bookmark}>
                     <img src="/icons/bookmark.png" alt="" />
-                    101
+                    {blog.usersSaved.length}
                 </div>
                 <div className={styles.like}>
                     <img src="/icons/unlike.png" alt="" />
-                    66
+                    {blog.usersLikes.length}
                 </div>
                 <div className={styles.share}>
                     <img src="/icons/share.png" alt="" />

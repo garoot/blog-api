@@ -6,17 +6,7 @@ const Comment = require('../models/comment.model')
 const Category = require('../models/category.model')
 
 module.exports.getOneBlog = async (req, res) => {
-    // await Blog.findOne({_id: req.params.blogId}).populate('producer'), (err, blog) => {
-    //     if(err){
-    //         res.json({error:err})
-    //     }
-    //     else {
-    //         res.json({
-    //             message:"blog details retrieved successfully!",
-    //             blog: blog
-    //         })
-    //     }
-    // }
+
     await Blog.findOne({_id: req.params.blogId})
     .populate('producer')
     .then(data => {
@@ -29,24 +19,20 @@ module.exports.getOneBlog = async (req, res) => {
             error: error
         })
     })
-
-    // .populate('producer')
 }
 
 module.exports.getBlogs = (req,res) => {
     Blog.find()
-        // .populate({
-        //     path: 'producer',
-        //     populate: {
-        //         path: 'producer',
-        //         model: 'User'
-        //     }
-        // })
         .populate('producer')
         .then(data => {
             res.status(200).json({
                 message: "Blogs received successfully",
                 blogs: data
+            })
+        })
+        .catch(error => {
+            res.status(400).json({
+                error: error
             })
         })
 }
