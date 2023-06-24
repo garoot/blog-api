@@ -8,7 +8,7 @@
 }
 
 @media screen and (max-width:710px){
-    .sidebarContainer button{
+    .sidebarContainer .button{
         display:none
     }
     .sidebarContainer hr{
@@ -46,7 +46,7 @@
     min-width: 83px;
 }
 
-.sidebarContainer button{
+.sidebarContainer .button{
     border: none;
     text-align: left;
     padding: 5px;
@@ -58,26 +58,32 @@
     font-weight: 500;
     /* font-family: ; */
     width: 100%;
+    text-decoration: none;
 }
 
-.sidebarContainer button:hover{
+
+.sidebarContainer .button:hover{
     background-color: rgb(8, 0, 28);
 }
 
-.sidebarcontainer button:focus{
+.button:focus{
     border-left: 4px solid;
     border-color: #4e38f4;
+    background-color: rgb(8, 0, 28);
 }
 
 .sidebarContainer hr{
     width: 90%;
 }
 
-.gold{
+#gold{
     color:  gold !important;
 }
 
 .sidebarTop{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 
 }
 

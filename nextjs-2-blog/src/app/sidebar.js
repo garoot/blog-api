@@ -1,8 +1,9 @@
 "use client"
 
-import { useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import styles from './sidebar.module.css'
 import { gsap } from 'gsap'
+import Link from 'next/link'
 
 export default function Sidebar({ }) {
 
@@ -30,6 +31,11 @@ export default function Sidebar({ }) {
         }
     }
 
+    // const sideButton = useRef()
+    // const handleButtonFocus = () => {
+    //     sideButton.current.focus()
+    // }
+
     return (
         <>
             <div className={styles.sidebarContainer}>
@@ -37,19 +43,19 @@ export default function Sidebar({ }) {
                     <div className={styles.sidebarLogo}>
                         <img src="/images/logo.png" alt="" />
                     </div>
-                    <button>Explore</button>
-                    <button>Courses</button>
-                    <button className={styles.gold}>Upcoming</button>
-                    <button className={styles.used}>Used Courses</button>
-                    <button>Blogs</button>
+                    <Link  className={styles.button}  href={'/'} > Explore</Link>
+                    <Link  className={styles.button} href={'/courses'} >Courses</Link>
+                    <Link  className={styles.button} href={'/ad-post'} id={styles.gold}>Upcoming</Link>
+                    <Link  className={styles.button} href={'/used-courses'} id={styles.used}>Used Courses</Link>
+                    <Link  className={styles.button} href={'/blog-list'}>Blogs</Link>
                     <div>
                         <hr />
                     </div>
-                    <button>Settings</button>
+                    <Link  className={styles.button} href={'/settings'} >Settings</Link>
                 </div>
                 <div className={styles.sidebarBottom}>
-                    <button>About Us</button>
-                    <button>Support</button>
+                    <Link  className={styles.button} href={'/about-us'}>About Us</Link>
+                    <Link  className={styles.button} href={'/support'}>Support</Link>
                 </div>
 
                 <div className={styles.sidebar2}>
@@ -64,5 +70,7 @@ export default function Sidebar({ }) {
                 </div>
             </div>
         </>
-    )
+
+)
+
 }
