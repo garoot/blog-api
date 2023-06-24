@@ -43,9 +43,9 @@ export default function Sidebar({ }) {
                     <div className={styles.sidebarLogo}>
                         <img src="/images/logo.png" alt="" />
                     </div>
-                    <Link  className={styles.button}  href={'/'} > Explore</Link>
+                    <Link  className={styles.button}  href={'/explore'} > Explore</Link>
                     <Link  className={styles.button} href={'/courses'} >Courses</Link>
-                    <Link  className={styles.button} href={'/ad-post'} id={styles.gold}>Upcoming</Link>
+                    <Link  className={styles.button} href={'/upcoming'} id={styles.gold}>Upcoming</Link>
                     <Link  className={styles.button} href={'/used-courses'} id={styles.used}>Used Courses</Link>
                     <Link  className={styles.button} href={'/blog-list'}>Blogs</Link>
                     <div>
