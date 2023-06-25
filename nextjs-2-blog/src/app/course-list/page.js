@@ -9,7 +9,7 @@ export async function CourseList() {
 
     const data = await fetch('http://localhost:8000/courses')
     const allCourses = await data.json()
-    console.log(allCourses.message)
+    console.log(allCourses)
 
     return (
         <div>
