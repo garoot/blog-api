@@ -13,15 +13,25 @@ module.exports.getCourses = (req, res) => {
 
 module.exports.postCourse = (req, res) => {
     // console.log(req.formdata)
-    let thumbnail = null;
-    if(req.file){
-        thumbnail = req.file.filename
-    }
+    console.log(req.body)
+    const title = req.body.title;
+    const description = req.body.description;
+    const producer = req.body.producer;
+    const pricing = req.body.pricing;
+    const thumbnail = req.body.thumbnail
+
+
+
+    // let thumbnail = null;
+    // if(req.file){
+    //     thumbnail = req.file.filename
+    // }
     const course = new Course({
-        title: req.body.title,
-        description: req.body.description,
-        producer: req.body.producer,
-        thumbnail: thumbnail
+        title: title,
+        description: description,
+        producer: producer,
+        thumbnail: thumbnail,
+        pricing: pricing
     })
     course.save(err => {
         if(err){

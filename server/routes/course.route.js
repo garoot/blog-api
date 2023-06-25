@@ -8,7 +8,8 @@ router
     .route('/')
     .get(courseController.getCourses)
 
-    .post(courseController.postCourse)
+    .post(upload.single('thumbnail'),
+        courseController.postCourse)
 
 router
     .route('/add-to-category')
