@@ -1,8 +1,34 @@
 "use client"
 
+import { useEffect, useState } from 'react'
 import styles from './courseCard.module.css'
 
-export default function CourseCard({ }) {
+export default function CourseCard({ course }) {
+
+    const [title, setTitle] = useState()
+    const [description, setDescription] = useState()
+    const [thumbnail, setThumbnail] = useState()
+    const [enrollments, setEnrollments] = useState()
+    const [outcomes, setOutcomes] = useState()
+    const [reviews, setReviews] = useState()
+    const [requirements, setRequirements] = useState()
+    const [keywords, setKeywords] = useState()
+    const [pricing, setPricing] = useState()
+
+    const imgURL = 'http://localhost:8000/public/coursePics/'
+
+    useEffect(() => {
+        setTitle(course.title)
+        setDescription(course.description)
+        setThumbnail(course.thumbnail)
+        setEnrollments(course.enrollments)
+        setOutcomes(course.outcomes)
+        setReviews(course.reviews)
+        setRequirements(course.requirements)
+        setKeywords(course.keywords)
+        setPricing(course.pricing)
+    }, [])
+
     return (
         <div className={styles.container}>
             <div className={styles.courseCard}>

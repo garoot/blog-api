@@ -11,6 +11,10 @@ router
     .post(upload.single('thumbnail'),
         courseController.postCourse)
 
+router 
+    .route('/find/:courseId')
+    .get(courseController.getOneCourse)
+
 router
     .route('/add-to-category')
     .put(courseController.addToCategory)

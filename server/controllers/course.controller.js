@@ -1,24 +1,45 @@
 const Category = require('../models/category.model')
 const Course = require('../models/course.model')
 
+module.exports.getOneCourse = async (req, res) => {
+    await Course.findOne({_id: req.params.courseId})
+    .populate('producer')
+    .then(data => {
+        res.status(200).json({
+            course: data,
+        })
+    })
+    .catch(error => {
+        res.status(400).json({
+            error: error
+        })
+    })
+}
+
 module.exports.getCourses = (req, res) => {
     Course.find()
+        .populate('producer')
         .then(data => {
             res.status(200).json({
                 message: "Courses received successfully",
                 courses: data
             })
         })
+        .catch(error => {
+            res.status(400).json({
+                error:error
+            })
+        })
 }
 
 module.exports.postCourse = (req, res) => {
     // console.log(req.formdata)
-    console.log(req.body)
+    console.log(req.file.filename)
     const title = req.body.title;
     const description = req.body.description;
     const producer = req.body.producer;
     const pricing = req.body.pricing;
-    const thumbnail = req.body.thumbnail
+    const thumbnail = req.file.filename
 
 
 
