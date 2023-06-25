@@ -5,8 +5,12 @@ import styles from './sidebar.module.css'
 import { gsap } from 'gsap'
 import Link from 'next/link'
 
-export default function Sidebar({ }) {
 
+export default function Sidebar({ }) {
+    // Focusing sidebar Explore button on first render
+
+
+    // ------ GSAP Animation ------
     let arrow = useRef(null)
     let subnavRef = useRef(null)
 
@@ -30,6 +34,8 @@ export default function Sidebar({ }) {
             tl.reverse()
         }
     }
+    // ------ GSAP Animation ------
+
 
     // const sideButton = useRef()
     // const handleButtonFocus = () => {
@@ -43,10 +49,10 @@ export default function Sidebar({ }) {
                     <div className={styles.sidebarLogo}>
                         <img src="/images/logo.png" alt="" />
                     </div>
-                    <Link  className={styles.button}  href={'/explore'} > Explore</Link>
-                    <Link  className={styles.button} href={'/courses'} >Courses</Link>
+                    <Link  id='explore'  className={`${styles.button} ${styles.active}`}  href={'/explore'} > Explore</Link>
+                    <Link  className={styles.button} href={'/course-list'} >Courses</Link>
                     <Link  className={styles.button} href={'/upcoming'} id={styles.gold}>Upcoming</Link>
-                    <Link  className={styles.button} href={'/used-courses'} id={styles.used}>Used Courses</Link>
+                    <Link  className={styles.button} href={'/used-course-list'} id={styles.used}>Used Courses</Link>
                     <Link  className={styles.button} href={'/blog-list'}>Blogs</Link>
                     <div>
                         <hr />
