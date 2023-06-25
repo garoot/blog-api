@@ -1,6 +1,16 @@
 import styles from './courseList.module.css'
+import Link from 'next/link';
+import dynamic from 'next/dynamic'
+import CourseCard from './courseCard'
 
-export default function CourseList({}) {
+
+
+export async function CourseList() {
+
+    const data = await fetch('http://localhost:8000/courses')
+    const allCourses = await data.json()
+    console.log(allCourses.message)
+
     return (
         <div>
             <h1 style={{color:"white", fontWeight:"500", marginBottom:"30px"}}>
@@ -28,7 +38,17 @@ export default function CourseList({}) {
                         <BlogCard href={`/blog/${blog._id}`} key={blog._id} className="blogCard" blog={blog} blogs={allBlogs}/>                    
                     </Link> )
                 })} */}
+                {allCourses.courses.map((course) => {
+                    return (
+                    <Link key={course._id} href={`/course/${course._id}`} style={{textDecoration: 'none'}}>
+                        <CourseCard course={course} />
+                    </Link>
+                    )
+                })}
             </div>
         </div>
     )
 }
+
+export default dynamic (() => Promise.resolve(CourseList), {ssr: false})
+

@@ -3,7 +3,6 @@
 
 import styles from './blogList.module.css'
 import Link from 'next/link';
-import Image from 'next/image';
 // import BlogCard from '../../components/blogCard';
 // import { createContext, useEffect, useState } from 'react';
 // import axios from 'axios';
@@ -41,7 +40,7 @@ export async function BlogList () {
 
                 {allBlogs.blogs.map((blog) =>  {
                     return (<Link key={blog._id} href={`/blog/${blog._id}`} style={{textDecoration: 'none'}} >
-                        <BlogCard href={`/blog/${blog._id}`} key={blog._id} className="blogCard" blog={blog} blogs={allBlogs}/>                    
+                        <BlogCard blog={blog}/>                    
                     </Link> )
                 })}
 
