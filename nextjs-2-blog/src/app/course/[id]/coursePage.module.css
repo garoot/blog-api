@@ -1,0 +1,244 @@
+.container{
+    display: flex;
+    color: white;
+    /* padding-right: 0px; */
+    width: 100%;
+}
+
+.left{
+    display: flex;
+    flex-direction: column;
+    padding-right: 10px;
+}
+
+.leftSecond{
+    display: flex;
+    justify-content: space-between;
+}
+
+.leftSecondLeft{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.leftSecondRight{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.leftSecondRightTop{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* .producer img{
+    border-radius: 50%;
+    height: 45% !important;
+} */
+
+.producer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 10px;
+}
+
+.producer img{
+    border-radius: 50%;
+    height: 35px;
+    margin-right: 10px;
+}
+
+.leftSecondLeftTop{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.leftSecondLeftTop img {
+    height: 15px;
+}
+
+.leftSecondLeftBottom{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.leftSecondLeftBottom img{
+    height: 15px;
+    margin-right: 10px;
+}
+
+.leftSecondRightBottom{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.leftSecondRightBottom img{
+    height: 15px;
+    margin-right: 10px;
+}
+
+.leftThird{
+    /* border: 1px solid white; */
+    border-radius: 3px;
+    background-color: rgb(18, 23, 72);
+    padding-left: 15px;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+.courseObjective{
+    display: flex;
+    align-items: center;
+    margin-bottom: 2px;
+}
+
+.leftThird img{
+    height: 15px;
+    margin-right: 7px
+}
+
+
+.leftFourth{
+    /* border: 1px solid white; */
+    border-radius: 3px;
+    background-color: rgb(18, 23, 72);
+    padding-left: 15px;
+    padding-bottom: 20px;
+}
+
+.courseRequirement{
+    display: flex;
+    align-items: center;
+    margin-bottom: 2px;
+}
+
+.leftFourth img{
+    height: 15px;
+    margin-right: 7px
+}
+
+.right{
+    display: flex;
+    /* justify-content: center; */
+    min-width: 35%;
+}
+
+.rightCard{
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+    background-color: rgb(18, 23, 72);
+    height: 55vh;
+    border-radius: 7px;
+    margin-top: 40px;
+    margin-left: 5px;
+}
+
+/* .rightCard img{
+    width: 100%;
+} */
+
+.rightCardImage{
+    border-radius: 7px;
+}
+
+.cardButtons{
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.cardButtons button{
+    margin-bottom: 10px;
+    height: 45px;
+    border: none;
+    border-radius: 3px;
+}
+
+#addToCard{
+    background-color: #FFC83D;
+    font-weight:700;
+}
+
+#addToWishlist{
+    background-color: rgb(255, 69, 125);
+    font-weight:700;
+
+}
+.rightCardBottom{
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.rightCardBottom p{
+    display: flex;
+    align-items: center;
+
+}
+
+.rightCardBottom img{
+    height: 16px;
+    margin-right: 5px;
+}
+
+
+.rightCardSecond{
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 10px 10px 10px;
+}
+
+.rightCardSecond button{
+    background: none;
+    border: none;
+    font-size: large;
+    font-weight: 540;
+    
+}
+
+.basicPriceButton{
+    color: #47DEF2;
+}
+
+.basicPriceButton:hover{
+    border: 1px solid #47DEF2;
+    padding: 5px 10px 5px 10px;
+    margin: -5px -5px -5px -5px;
+    border-radius: 30px;
+}
+
+.basicPriceButton:focus{
+    border: 1px solid #47DEF2;
+    padding: 5px 10px 5px 10px;
+    margin: -5px -5px -5px -5px;
+    border-radius: 30px;
+}
+
+.goldPriceButton{
+    color: #FFC83D;
+}
+
+.goldPriceButton:hover{
+    border: 1px solid #FFC83D;
+    padding: 5px 10px 5px 10px;
+    margin: -5px -5px -5px -5px;
+    border-radius: 30px;
+}
+.goldPriceButton:focus{
+    border: 1px solid #FFC83D;
+    padding: 5px 10px 5px 10px;
+    margin: -5px -5px -5px -5px;
+    border-radius: 30px;
+}
+
+

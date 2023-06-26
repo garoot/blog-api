@@ -40,12 +40,12 @@ export default function CourseCard({ course }) {
                         <div className={styles.middleLeftTop}>
                             {/* img */}
                             <img src="/icons/stars.png" alt="" />
-                            <p>{reviews.length} ratings</p>
+                            <p>{reviews? reviews.length: 0} ratings</p>
                         </div>
                         <div className={styles.middleLeftBottom}>
                             {/* img */}
                             <img src="icons/students.png" alt="" />
-                            <p>{enrollments.length}</p>
+                            <p>{enrollments? enrollments.length: 0}</p>
                             <p>33:30m</p>
                         </div>
                     </div>
@@ -59,7 +59,6 @@ export default function CourseCard({ course }) {
                     <div className={styles.cardBottomTop}>
                         <button className={styles.basicPriceButton}>{pricing? pricing: 0} SAR</button>
                         <button className={styles.goldPriceButton}>{pricing? pricing: 0} SAR</button>
-
                     </div>
                     <hr />
                     <div className={styles.cardBottomBottom}>
