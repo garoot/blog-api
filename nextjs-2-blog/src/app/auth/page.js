@@ -7,8 +7,8 @@ export default function AuthWindow({ Component, pageProps }) {
 
     const [showLogin, setShowLogin] = useState(true)
     const [showRegister, setShowRegister] = useState(false)
-    const activeLogin = useRef(null)
-    const activeRegister = useRef(null)
+
+
 
     const openLoginForm = () => {
         if(!showLogin){
@@ -23,22 +23,25 @@ export default function AuthWindow({ Component, pageProps }) {
         }
     }
 
-    // useEffect(()=> {
-    //     activeLogin.current.focus()
-    // })
-
-    // useEffect(() => {
-    //     console.log(showLogin)
-    //     console.log(showRegister)
-    // }, [showLogin, showRegister])
-
 
     return (
         <div className={styles.container}>
             <div className={styles.popup}>
                 <div className={styles.buttons}>
-                    <button ref={activeRegister} onClick={()=> openRegisterForm()} id={styles.registerButton}>Register</button>
-                    <button ref={activeLogin}  onClick={()=> openLoginForm()} id={styles.login}>Login</button>
+                    <button 
+                        onClick={()=> openRegisterForm()} 
+                        id={styles.registerButton}
+                        style={showRegister? {border: '2px solid rgba(59, 51, 145, 0.871)'}:{}}
+                    >
+                        Register
+                    </button>
+                    <button 
+                        onClick={()=> openLoginForm()} 
+                        id={styles.loginButton}
+                        style={showLogin? {border: '2px solid rgba(59, 51, 145, 0.871)'}:{}}
+                    >
+                        Login
+                    </button>
                 </div>
                 <div className={styles.loginSocialAuth}>
                     <button id={styles.google}>
@@ -80,6 +83,8 @@ export default function AuthWindow({ Component, pageProps }) {
                 }
                 
             </div>
+            <script>
+            </script>
         </div>
 
     )

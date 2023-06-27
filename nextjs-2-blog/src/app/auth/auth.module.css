@@ -45,22 +45,25 @@
 }
 
 
-#login{
+#loginButton{
     border-radius: 0px 10px 10px 0px;
     width: 100px;
     height: 40px;
     color: #47DEF2;
     font-weight: 700;
-}gg
-
-#login:hover{
-    border: 2px solid rgba(59, 51, 145, 0.871);
 }
-#login:focus{
+
+#loginButton:hover{
     border: 2px solid rgba(59, 51, 145, 0.871);
 }
 
+#loginButton:focus{
+    border: 2px solid rgba(59, 51, 145, 0.871);
+}
 
+.activeForm{
+    border: 2px solid rgba(59, 51, 145, 0.871);
+}
 
 .loginSocialAuth{
     display: flex;
