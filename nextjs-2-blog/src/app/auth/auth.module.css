@@ -1,12 +1,4 @@
-/* .socialAuth button{
-    border-radius: 5px;
-} */
 
-/* .socialAuth img{
-    width:80px;
-    height:20px;
-    padding:0px 12px 0px 10px;
-} */
 .container{
     display: flex;
     justify-content: center;
@@ -40,7 +32,7 @@
 #registerButton{
     border-radius: 10px 0px 0px 10px;
     width: 100px;
-    height: 35px;
+    height: 40px;
     color: rgb(255, 69, 125);
     font-weight: 700;
 }
@@ -48,21 +40,29 @@
 #registerButton:hover{
     border: 2px solid rgba(59, 51, 145, 0.871);
 }
+#registerButton:focus{
+    border: 2px solid rgba(59, 51, 145, 0.871);
+}
 
 
 #login{
     border-radius: 0px 10px 10px 0px;
     width: 100px;
-    height: 35px;
+    height: 40px;
     color: #47DEF2;
     font-weight: 700;
-}
+}gg
 
 #login:hover{
     border: 2px solid rgba(59, 51, 145, 0.871);
 }
+#login:focus{
+    border: 2px solid rgba(59, 51, 145, 0.871);
+}
 
-.socialAuth{
+
+
+.loginSocialAuth{
     display: flex;
     justify-content: center;
     margin-top: 40px;
@@ -143,3 +143,26 @@
     /* margin-top: 35px; */
 }
 
+.registerForm{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 10px 5px 50px 5px;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.registerForm input{
+    height: 35px;
+    width: 80%;
+    margin: 8px 0px 7px 0px;
+    border-radius: 5px;
+    border: none;
+    padding: 5px 10px 5px 10px;
+}
+
+.registerForm label{
+    display: flex;
+    justify-content: center;
+    width: 80%;
+}
