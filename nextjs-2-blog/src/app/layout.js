@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import Head from 'next/head';
 import Navbar from './navbar';
 import Sidebar from './sidebar';
+import AuthWindow from './auth/page';
 
 
 const inter = Inter({ subsets: ['latin'] })
@@ -24,7 +25,8 @@ export default function RootLayout({ children }) {
           <Sidebar/>
         </div>
         <div className={styles.right}>
-          <Navbar/>
+          <Navbar />
+          {/* <AuthWindow/> */}
           {children}
         </div>
         

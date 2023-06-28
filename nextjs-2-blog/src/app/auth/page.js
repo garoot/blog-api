@@ -3,12 +3,43 @@
 import { useEffect, useRef, useState } from 'react'
 import styles from './auth.module.css'
 
-export default function AuthWindow({ Component, pageProps }) {
+export default function AuthWindow({authWindow, setAuthWindow }) {
 
     const [showLogin, setShowLogin] = useState(true)
     const [showRegister, setShowRegister] = useState(false)
 
+    // const mainContainer = useRef(null)
+    // const popupContainer = useRef(null)
 
+    const [mainContainer, setMainContainer] = useState()
+    const [popupContainer, setPopupContainer] = useState()
+
+    useEffect(() => {
+        // setMainContainer(document.getElementsByClassName("container"))
+        // if(mainContainer){
+        //     mainContainer[0].addEventListener("click", closeAuthWindow)
+        // }
+        // document.getElementById("popup").addEventListener('click', function(e){
+        //     console.log("popup clicked")
+        //     console.log(e.target.className)
+        // })
+        var popupContainer = document.getElementById("popup")
+        var mainContainer = document.getElementById("container")
+
+        mainContainer.addEventListener('click', function(e){
+            if(e.target.className == mainContainer.className && authWindow){
+                console.log("outside popup")
+                console.log(mainContainer.className)
+                setAuthWindow(false)
+
+            } else {
+                console.log("inside popup")
+                console.log(popupContainer.className)
+            }
+        })
+
+    },[])
+    // document.getElementById("mainContainer").addEventListener("mousedown", closeAuthWindow, false)
 
     const openLoginForm = () => {
         if(!showLogin){
@@ -23,10 +54,15 @@ export default function AuthWindow({ Component, pageProps }) {
         }
     }
 
+    // const closeAuthWindow = () => {
+    //     console.log(e)
+    //     console.log("click")
+    // }
+
 
     return (
-        <div className={styles.container}>
-            <div className={styles.popup}>
+        <div id='container' ref={mainContainer} className={styles.container}>
+            <div id='popup' ref={popupContainer} className={styles.popup}>
                 <div className={styles.buttons}>
                     <button 
                         onClick={()=> openRegisterForm()} 
