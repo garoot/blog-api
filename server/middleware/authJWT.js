@@ -4,6 +4,8 @@ const db = require("../models")
 const User = db.user
 const Role = db.role
 
+const InvalidToken = require("../models/InvalidToken.model.js");
+
 const {TokenExpiredError} = jwt
 
 const catchError = (err, res) => {
@@ -19,22 +21,39 @@ const catchError = (err, res) => {
     })
 }
 
-verifyToken = (req, res, next) => {
-    let token = req.headers["x-access-token"];
+
+verifyToken = async (req, res, next) => {
+    let token = await req.headers["x-access-token"];
     if(!token){
         res.status(403).send({
             message: "No token provided!"
         })
+        return;
+    }
+
+    let invalidToken = await InvalidToken.findOne({accessToken: token})
+    if(invalidToken){
+        res.status(403).send({
+            message:"token invalid!"
+        })
+        return;
     }
     // verify provided token's signature is legit
-    jwt.verify(token, config.secret, (err, decoded) => {
+    await jwt.verify(token, config.secret, async (err, decoded) => {      
         // if not legit, then someone manipulated the content of jwt token
         if(err) {
             return catchError(err, res)
-        }
+        } 
         req.userId = decoded.id;
         next();
     })
+
+
+
+
+
+    next();
+
 }
 
 isAdmin = (req, res, next) => {

@@ -14,15 +14,8 @@ export default function AuthWindow({authWindow, setAuthWindow }) {
     const [mainContainer, setMainContainer] = useState()
     const [popupContainer, setPopupContainer] = useState()
 
+    // on clicking outside the authWindow, close
     useEffect(() => {
-        // setMainContainer(document.getElementsByClassName("container"))
-        // if(mainContainer){
-        //     mainContainer[0].addEventListener("click", closeAuthWindow)
-        // }
-        // document.getElementById("popup").addEventListener('click', function(e){
-        //     console.log("popup clicked")
-        //     console.log(e.target.className)
-        // })
         var popupContainer = document.getElementById("popup")
         var mainContainer = document.getElementById("container")
 
@@ -31,7 +24,6 @@ export default function AuthWindow({authWindow, setAuthWindow }) {
                 console.log("outside popup")
                 console.log(mainContainer.className)
                 setAuthWindow(false)
-
             } else {
                 console.log("inside popup")
                 console.log(popupContainer.className)
@@ -39,7 +31,6 @@ export default function AuthWindow({authWindow, setAuthWindow }) {
         })
 
     },[])
-    // document.getElementById("mainContainer").addEventListener("mousedown", closeAuthWindow, false)
 
     const openLoginForm = () => {
         if(!showLogin){
@@ -53,11 +44,6 @@ export default function AuthWindow({authWindow, setAuthWindow }) {
             setShowLogin(false)
         }
     }
-
-    // const closeAuthWindow = () => {
-    //     console.log(e)
-    //     console.log("click")
-    // }
 
 
     return (

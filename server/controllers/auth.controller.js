@@ -1,11 +1,14 @@
 const config = require("../config/auth.config")
 const db = require("../models")
 const {user: User, role: Role, refreshToken: RefreshToken} = db
+const AccessToken = require('../models/accessToken.model')
+
 // const User = db.user
 // const Role = db.role
 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
+const InvalidToken = require("../models/InvalidToken.model");
 
 exports.signup = (req, res) => {
     // new users
@@ -117,6 +120,23 @@ exports.signin = (req, res) => {
         for(let i = 0; i < user.roles.length; i++){
             authorities.push("ROLE_" + user.roles[i].name.toUpperCase())
         }
+
+        // create AccessToken in db to track them and blacklist them later
+        // will be used when refresh token before expiry of access token
+        // also when logout users
+        const accessToken = new AccessToken({
+            token: refreshToken,
+            user: user,
+            accessToken: token
+        })
+        accessToken.save((err, storedAccessToken) => {
+            if(err){
+                res.status(500).send({
+                    message: err
+                })
+            }
+        })
+
         // send data and accessToken
         res.status(200).json({
             id: user._id,
@@ -153,6 +173,27 @@ exports.refreshToken = async (req, res) => {
             });
         }
 
+        console.log(refreshToken.user.toString())
+
+        // retrieving the access token attached to the refresh token to blacklist it
+        console.log("retrieving access token attached to refresh token...")
+        let oldAccessToken = await AccessToken.findOne({token: requestToken})
+
+        console.log("Access token attached to refresh token:", oldAccessToken)
+
+        console.log("invalidating retrieved access token...")
+        let invalidToken = new InvalidToken({
+            token: oldAccessToken.token,
+            user: oldAccessToken.user,
+            accessToken: oldAccessToken.accessToken
+        })
+        invalidToken.save((err, invokedToken) => {
+            if(err){
+                console.log(err)
+            }
+            console.log("token invalidated: ", invokedToken)
+        })
+
         let newAccessToken = jwt.sign(
             { id: refreshToken.user._id}, 
             config.secret,
@@ -164,6 +205,23 @@ exports.refreshToken = async (req, res) => {
             refreshToken: refreshToken.token,
         })
     } catch (err) {
+        return res.status(500).send({message: err})
+    }
+}
+
+exports.findRefreshToken = async (req, res) =>{
+    const { refreshToken: requestToken} = req.body;
+
+    if(requestToken == null){
+        return res.status(403).json({
+            message: "Refresh Token is required!"
+        })
+    }
+    try {
+        let refreshTokenDB = await RefreshToken.findOne({ token: requestToken})
+        console.log(refreshTokenDB)
+    }
+    catch (err) {
         return res.status(500).send({message: err})
     }
 }

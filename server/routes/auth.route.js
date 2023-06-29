@@ -30,4 +30,6 @@ module.exports = function(app) {
     // the frontend must initiate a request to this route
     // to get new access token, then resend the first request
     app.post("/auth/refreshtoken", authController.refreshToken)
+
+    app.post("/auth/findrefresh", authController.findRefreshToken)
 }
