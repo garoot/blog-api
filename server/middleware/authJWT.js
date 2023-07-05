@@ -31,6 +31,7 @@ verifyToken = async (req, res, next) => {
         return;
     }
 
+    // checking if attached access token is in the blacklist
     let invalidToken = await InvalidToken.findOne({accessToken: token})
     if(invalidToken){
         res.status(403).send({
@@ -38,6 +39,7 @@ verifyToken = async (req, res, next) => {
         })
         return;
     }
+
     // verify provided token's signature is legit
     await jwt.verify(token, config.secret, async (err, decoded) => {      
         // if not legit, then someone manipulated the content of jwt token

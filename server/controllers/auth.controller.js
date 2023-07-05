@@ -78,12 +78,30 @@ exports.signup = (req, res) => {
     })
 }
 
+const validateEmail = (email) => {
+    return String(email)
+        .toLowerCase()
+        .match(
+            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        )
+}
+
 exports.signin = (req, res) => {
     console.log("sign in ...")
-    User.findOne({
-        username: req.body.username
-    })
-    .populate("roles", "-__v")
+    var isEmail = validateEmail(req.body.username)
+    let username;
+    if(isEmail){
+        console.log("username is an email address: ", req.body.username)
+        username = User.findOne({
+            email: req.body.username
+        })
+    } else {
+        console.log("username is not an email address: ", req.body.username)
+        username = User.findOne({
+            username: req.body.username
+        })
+    }
+    username.populate("roles", "-__v")
     .exec(async (err, user) => {
         if(err) {
             res.status(500).send({
@@ -141,8 +159,8 @@ exports.signin = (req, res) => {
         res.status(200).json({
             id: user._id,
             username: user.username,
-            email: user.email,
-            roles: authorities,
+            // email: user.email,
+            // roles: authorities,
             accessToken: token,
             refreshToken: refreshToken,
         })

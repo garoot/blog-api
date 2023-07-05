@@ -45,6 +45,11 @@ export default function AuthWindow({authWindow, setAuthWindow }) {
         }
     }
 
+    const sendLoginReq = (e) => {
+        
+        console.log(e.target.emailAddress)
+    }
+
 
     return (
         <div id='container' ref={mainContainer} className={styles.container}>
@@ -75,12 +80,12 @@ export default function AuthWindow({authWindow, setAuthWindow }) {
                 </div>
                 {
                 showLogin? (
-                    <form className={styles.loginForm} action="">
+                    <form className={styles.loginForm} action="http://localhost:8000/auth/signin" method='POST'>
                         <label htmlFor="userName">
-                            <input type="text" name="emailAddress" id="emailAddress" placeholder='Email Address'/>
+                            <input type="text" name="username" id="emailAddress" placeholder='Email Address'/>
                         </label>
                         <label htmlFor="password">
-                            <input type="text" name="password" id="password" placeholder='Password'/>
+                            <input type="password" name="password" id="password" placeholder='Password'/>
                         </label>
                         <button className={styles.submitButton} type='submit'>Login</button>
                     </form>
@@ -94,10 +99,10 @@ export default function AuthWindow({authWindow, setAuthWindow }) {
                             <input type="text" name="emailAddress" id="emailAddress" placeholder='Email Address'/>
                         </label>
                         <label htmlFor="password">
-                            <input type="text" name="password" id="password" placeholder='Password'/>
+                            <input type="password" name="password" id="password" placeholder='Password'/>
                         </label>
                         <label htmlFor="password2">
-                            <input type="text" name="password2" id="password2" placeholder='Repeat your password'/>
+                            <input type="password" name="password2" id="password2" placeholder='Repeat your password'/>
                         </label>
                         <button className={styles.submitButton} type='submit'>Register</button>
                     </form>
@@ -105,7 +110,7 @@ export default function AuthWindow({authWindow, setAuthWindow }) {
                 }
                 
             </div>
-            <script>
+            <script> 
             </script>
         </div>
 
