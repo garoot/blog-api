@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import styles from './auth.module.css'
+// import {useSession} from "next-auth/react";
 
 export default function AuthWindow({authWindow, setAuthWindow }) {
 
@@ -45,9 +46,25 @@ export default function AuthWindow({authWindow, setAuthWindow }) {
         }
     }
 
-    const sendLoginReq = (e) => {
-        
-        console.log(e.target.emailAddress)
+    async function sendLoginReq(e){
+        e.preventDefault()
+        let username = e.currentTarget.elements.username.value
+        let password = e.currentTarget.elements.password.value
+
+        const requestContent = {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                username: username,
+                password: password
+            })
+        }
+
+        await fetch("http://localhost:8000/auth/signin",requestContent)
+        .then((response) => response.json())
+        .then((result) => {
+            console.log(result)
+        })
     }
 
 
@@ -80,8 +97,8 @@ export default function AuthWindow({authWindow, setAuthWindow }) {
                 </div>
                 {
                 showLogin? (
-                    <form className={styles.loginForm} action="http://localhost:8000/auth/signin" method='POST'>
-                        <label htmlFor="userName">
+                    <form className={styles.loginForm} onSubmit={sendLoginReq}>
+                        <label htmlFor="emailAddress">
                             <input type="text" name="username" id="emailAddress" placeholder='Email Address'/>
                         </label>
                         <label htmlFor="password">
